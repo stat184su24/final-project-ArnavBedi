@@ -18,11 +18,13 @@ I want to explore the relationship between social media usage and mental health 
 Installing neccesary libraries 
 
 ```{r}
+# load necessary packages
 library(tidyverse)
 library(mosaic)
-install.packages("ggplot2")
+library(esquisse)
 
-
+devtools::install_github("mdbeckman/dcData")
+library(dcData)
 ```
 
 #### Data Intake 
@@ -51,13 +53,27 @@ Include R code and written explanation for wangling your data (you can make mult
 str(social_media)
 str(mental_health)
 
-# Check for missing values
+# Checking for missing values
 summary(social_media)
 summary(mental_health)
 
+# Ensuring that Daily_Usage_Time..minutes. column is numeric
+social_media$Daily_Usage_Time..minutes. <- as.numeric(as.character(social_media$Daily_Usage_Time..minutes.))
+
+# Checking for conversion issues
+summary(social_media$Daily_Usage_Time..minutes.)
+
+# Aggregating social media usage per day
 social_media_summary <- social_media %>%
   group_by(User_ID) %>%
-  summarise(avg_social_media_usage = mean(hours_spent, na.rm = TRUE))
+  summarise(total_hours_spent = sum(Daily_Usage_Time..minutes., na.rm = TRUE) / 60) # Converting minutes to hours
+
+# Aggregating mental health scores per day
+mental_health_summary <- mental_health %>%
+  group_by(Timestamp) %>%
+  summarise(avg_depression_score = mean(X18..How.often.do.you.feel.depressed.or.down., na.rm = TRUE),
+            avg_anxiety_score = mean(X13..On.a.scale.of.1.to.5..how.much.are.you.bothered.by.worries., na.rm = TRUE))
+
 
 ```
 
