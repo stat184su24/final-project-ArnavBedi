@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Names of all group members" />
+<meta name="author" content="Arnav Bedi" />
 
 
 <title>Initial EDA Basic Outline</title>
@@ -1512,7 +1512,7 @@ window.initializeCodeFolding = function(show) {
     $(this).detach().appendTo(div);
 
     // add a show code button right above
-    var showCodeText = $('<span>' + (showThis ? 'Hide' : 'Code') + '</span>');
+    var showCodeText = $('<span>' + (showThis ? 'Hide' : 'Show') + '</span>');
     var showCodeButton = $('<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right"></button>');
     showCodeButton.append(showCodeText);
     showCodeButton
@@ -1538,7 +1538,7 @@ window.initializeCodeFolding = function(show) {
     //   * Change text
     //   * add a class for intermediate states styling
     div.on('hide.bs.collapse', function () {
-      showCodeText.text('Code');
+      showCodeText.text('Show');
       showCodeButton.addClass('btn-collapsing');
     });
     div.on('hidden.bs.collapse', function () {
@@ -1748,7 +1748,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">Initial EDA Basic Outline</h1>
-<h4 class="author">Names of all group members</h4>
+<h4 class="author">Arnav Bedi</h4>
 
 </div>
 
@@ -1759,19 +1759,328 @@ or you can modify it as you see fit. Do what works best for your
 project.</p>
 <div id="research-question" class="section level2">
 <h2>Research Question</h2>
-<p>State your specific research question and why it is interesting.</p>
+<p>My topic for this final project is going to be Analyzing the Effect
+of Social Media on Mental Health</p>
+<p>I want to explore the relationship between social media usage and
+mental health outcomes. I want to research this and make a project on
+this topic as it would be beneficial in the identification of the risk
+factors, promotion of positive usage of social media as well as these
+findings can be shared with mental health professionals, educators, and
+social media companies to help them understand how to better support
+users’ mental health. By analyzing data from social media platforms and
+mental health surveys, I can also identify correlations between screen
+time, content type, and mental health indicators such as anxiety,
+depression, and well-being.</p>
 </div>
 <div id="data-processing" class="section level2">
 <h2>Data Processing</h2>
+<p>Installing neccesary libraries</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuNCAgICAg4pyUIHJlYWRyICAgICAyLjEuNVxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMVxu4pyUIGdncGxvdDIgICAzLjUuMSAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuMyAgICAg4pyUIHRpZHlyICAgICAxLjMuMVxu4pyUIHB1cnJyICAgICAxLjAuMiAgICAgXG7ilIDilIAgQ29uZmxpY3RzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG7inJYgZHBseXI6OmZpbHRlcigpIG1hc2tzIHN0YXRzOjpmaWx0ZXIoKVxu4pyWIGRwbHlyOjpsYWcoKSAgICBtYXNrcyBzdGF0czo6bGFnKClcbuKEuSBVc2UgdGhlIFx1MDAxYl04OztodHRwOi8vY29uZmxpY3RlZC5yLWxpYi5vcmcvXHUwMDA3Y29uZmxpY3RlZCBwYWNrYWdlXHUwMDFiXTg7O1x1MDAwNyB0byBmb3JjZSBhbGwgY29uZmxpY3RzIHRvIGJlY29tZSBlcnJvcnNcbiJ9 -->
+<pre><code>── Attaching core tidyverse packages ───────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ─────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShtb3NhaWMpXG5gYGAifQ== -->
+<pre class="r"><code>library(mosaic)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ21vc2FpYyc6XG4gIG1ldGhvZCAgICAgICAgICAgICAgICAgICAgICAgICAgIGZyb20gICBcbiAgZm9ydGlmeS5TcGF0aWFsUG9seWdvbnNEYXRhRnJhbWUgZ2dwbG90MlxuXG5UaGUgJ21vc2FpYycgcGFja2FnZSBtYXNrcyBzZXZlcmFsIGZ1bmN0aW9ucyBmcm9tIGNvcmUgcGFja2FnZXMgaW4gb3JkZXIgdG8gYWRkIFxuYWRkaXRpb25hbCBmZWF0dXJlcy4gIFRoZSBvcmlnaW5hbCBiZWhhdmlvciBvZiB0aGVzZSBmdW5jdGlvbnMgc2hvdWxkIG5vdCBiZSBhZmZlY3RlZCBieSB0aGlzLlxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYbW9zYWlj4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6TWF0cml44oCZOlxuXG4gICAgbWVhblxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6ZHBseXLigJk6XG5cbiAgICBjb3VudCwgZG8sIHRhbGx5XG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6cHVycnLigJk6XG5cbiAgICBjcm9zc1xuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmdncGxvdDLigJk6XG5cbiAgICBzdGF0XG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g4oCYcGFja2FnZTpzdGF0c+KAmTpcblxuICAgIGJpbm9tLnRlc3QsIGNvciwgY29yLnRlc3QsIGNvdiwgZml2ZW51bSwgSVFSLCBtZWRpYW4sIHByb3AudGVzdCwgcXVhbnRpbGUsIHNkLCB0LnRlc3QsIHZhclxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6YmFzZeKAmTpcblxuICAgIG1heCwgbWVhbiwgbWluLCBwcm9kLCByYW5nZSwgc2FtcGxlLCBzdW1cbiJ9 -->
+<pre><code>Registered S3 method overwritten by &#39;mosaic&#39;:
+  method                           from   
+  fortify.SpatialPolygonsDataFrame ggplot2
+
+The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+additional features.  The original behavior of these functions should not be affected by this.
+
+Attaching package: ‘mosaic’
+
+The following object is masked from ‘package:Matrix’:
+
+    mean
+
+The following objects are masked from ‘package:dplyr’:
+
+    count, do, tally
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    stat
+
+The following objects are masked from ‘package:stats’:
+
+    binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test, quantile, sd, t.test, var
+
+The following objects are masked from ‘package:base’:
+
+    max, mean, min, prod, range, sample, sum</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbC5wYWNrYWdlcyhcImdncGxvdDJcIilcbmBgYCJ9 -->
+<pre class="r"><code>install.packages(&quot;ggplot2&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gaW5zdGFsbC5wYWNrYWdlcyA6IFVwZGF0aW5nIGxvYWRlZCBwYWNrYWdlc1xuIn0= -->
+<pre><code>Error in install.packages : Updating loaded packages</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <div id="data-intake" class="section level4">
 <h4>Data Intake</h4>
-<p>Include R code and written explanation to import your
-<strong>TWO</strong> data sets.</p>
+<p>Social Media data set:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5zb2NpYWxfbWVkaWEgPC0gcmVhZC5jc3YoXCJDOi9Vc2Vycy9Bcm5hdi9Eb3dubG9hZHMvdmFsLmNzdlwiKVxuaGVhZChzb2NpYWxfbWVkaWEpXG5gYGAifQ== -->
+<pre class="r"><code>
+social_media &lt;- read.csv(&quot;C:/Users/Arnav/Downloads/val.csv&quot;)
+head(social_media)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MTAsInN1bW1hcnkiOltdfSwicmRmIjoiSDRzSUFBQUFBQUFBQnAxVVVXL2FNQkEySktRakVsdlZkcE82SDdBM29nVkc0YlVhWTZ1MlRxZ1VxVytSU2E2cFJXSkhzZW5LVzM5NXR3dU5RN0NLS2czcDVPKytPOStkN3k1Y2pXLzY3bzFMQ0xHSWJUZUkxVUpJV3ZQclNYZEVpTjFFcFVGczBpN09CM1E2UmxCNEg2STRwYUhwZnk2Uk5Sb09OZXoxYSt5Wmh2MHRMRmdqVU4rdlVFK2ozbG1GUmkraTNSajJKVTJneE00RTBxM20vaGE4dTJDYzV1di9aSFl6dFMrNFZEVE9hYnFQZURPaElTeUVXR3A5eG1rVzNsSDFxcjZieWZLSFZTLzl3VUMvL2N1Z0l2MTlrSkRPSmhET3REd2JtMWx2UmR1bktEK0xJbEErMVVUYlQxQk9pd2FqSE5Wa2Q0QlZjZjFxUlA1MmxNTVhrZEhXSHpUTEdBY3A5eEVITXhyVjFYUCt3RUN0WDFGM2w3bkZhUXF5VE8xcTM3bUVQTGdZNndhZXg5VW1mUWNlUWE3bk5FMm91aFc1bnZQSE1XWEpPcGhMR2tOd3pWTHd2SlR4bFFMcGxSNmRxWkJLQmxNTVA2YTZ0QSsvMkJKa2NBVWhzSHVJRE92cFY1R213TlZlaC9lWDJBUE1LSU1adWhuR3c3SEFFaWp5MzFLaG1PREcrOXU1K09QcEhoUWpiajZTemM4eEd4VW1WT3BHYWRLTnFLTGVMVzQ2b1Baa1hEa1FXWkVSTHpXUHkrV3BYMjdrQnZGdXhZdEtvbTU0dCtMTDdzQXdXeG1QeWZPL1RxT1VUbms2TmV3K1Y5SDhhK3lUQXp6RzdkSFBTZWdDRWgwNWd2c1N2c1YrYk5yaFpUbmorb04wa1pXZUVvcnFLMjRvRXMxc1hrNmUvZ0ZRRTJ6ZFF3VUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["User_ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Age"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Platform"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Daily_Usage_Time..minutes."],"name":[5],"type":["chr"],"align":["left"]},{"label":["Posts_Per_Day"],"name":[6],"type":["int"],"align":["right"]},{"label":["Likes_Received_Per_Day"],"name":[7],"type":["int"],"align":["right"]},{"label":["Comments_Received_Per_Day"],"name":[8],"type":["int"],"align":["right"]},{"label":["Messages_Sent_Per_Day"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Dominant_Emotion"],"name":[10],"type":["chr"],"align":["left"]}],"data":[{"1":"10","2":"31","3":"Male","4":"Instagram","5":"170","6":"5","7":"80","8":"20","9":"35","10":"Happiness","_rn_":"1"},{"1":"877","2":"32","3":"Female","4":"Instagram","5":"155","6":"6","7":"75","8":"25","9":"38","10":"Happiness","_rn_":"2"},{"1":"230","2":"26","3":"Non-binary","4":"Facebook","5":"45","6":"1","7":"8","8":"4","9":"12","10":"Sadness","_rn_":"3"},{"1":"876","2":"28","3":"Non-binary","4":"Snapchat","5":"115","6":"3","7":"38","8":"18","9":"27","10":"Anxiety","_rn_":"4"},{"1":"376","2":"28","3":"Non-binary","4":"Snapchat","5":"115","6":"3","7":"38","8":"18","9":"27","10":"Anxiety","_rn_":"5"},{"1":"876","2":"28","3":"Non-binary","4":"Snapchat","5":"115","6":"3","7":"38","8":"18","9":"27","10":"Anxiety","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[10]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbk5BXG5gYGAifQ== -->
+<pre class="r"><code>NA
+NA</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Mental Health data set:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5tZW50YWxfaGVhbHRoIDwtIHJlYWQuY3N2KFwiQzovVXNlcnMvQXJuYXYvRG93bmxvYWRzL3NtbWguY3N2XCIpXG5oZWFkKG1lbnRhbF9oZWFsdGgpXG5gYGAifQ== -->
+<pre class="r"><code>
+mental_health &lt;- read.csv(&quot;C:/Users/Arnav/Downloads/smmh.csv&quot;)
+head(mental_health)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MjEsInN1bW1hcnkiOltdfSwicmRmIjoiSDRzSUFBQUFBQUFBQnMxV3pXL2JOaFJYWWp0RERMUmJGd1M5OUtEYkxna2IrU094ZmVxR0lHdUJGZDJTRkZXeEV5MDlXWVFsVWlPcHVONXBmM20zUjFtMEpVM0prSDBBRTBDSWVwKy85OEZIWFYvNnc3N2ZkeHluNDNTN2UwNm5oMXVuOS83MjZuVGlPTjE5L05oenVzNmhlWDlDb1NQY0hPUDZDdGRCeWZoNjlOS2J2QnljRFFhdU41MTVrOW5vb3Awem5RMG1yWnpCZURhZXRuT21zOUd3bFRNY3pvYmVmWndSZ25lZUdveXZ4azd4L09YNzNMRlBOYmJ1VzVwQXVUKzRndlNmZk5VdFAzdkRYZXBLU0tobWdxdVlaVmI4aHZIRlR2blJYNDNpdk9mc0RxUmlldTNlNkR3RXJ2OEhuRHJHL2s3aVA2VFVmWFkrZ3ZxNzI3cWw4eXNhd0Z5STVZbDd1MkphZ3p4eDMzQ2w2VUxTOU1UOUtQTGJmQTRuN2lWVGdaRGhpWHNOWWNqMHY2TDl6VTY3VGVsSHh0RWdLQ3QrMUNKZXNsNDhaS21VK2ZheFdMZitVWUV0YjhXeWticmo3MEN2QUxnN2NDa1AzYUViaTF6YVZEOTdLeVM0T3FiY0hkY1lXNjFob1RWNnBGYWJyM3VZanZPa1FJc1QwY3lDWWtyVzM1YmZLZGQrdVhvTnZxWHZsYXRiZmpmdDd6ZDhWUFY3amRWdDBiZDZ2WHYwcTd3bS9yM0d1NG5mWXJjWU93My9WUXhOL0paV2phOFp2MTNXVjdkeEFmVTRUYmVuNzdna0h0NHlKR3FhMnZGNTdIdUVmSWlwSmt5Uk5aYVIwQVVRT3cvOEFTSGZBdzlCbHBUbi9wQ1E2OG9VSmplYTZuemJHUDZJa0hkQmtHZUZRSjE1NFk5TFYzcWRBUkVSRVhKQk9mdDFZNHhRQ1FZQm9WSEVFa1kxaEFTUFRXekJ2UERQQ2JrVWhVaXVnQ2dSTUpxUUZFSkdyY3pJdnloZDFMZ1o0bzJFVEJVSk4vcUJTRlBCazNWaHlCNVhmN0xMaEk2QlVCeUZKaGthVTFab3FReFRRVENzbW5GQXNUVUo2ZG9hK3NtZkV2SmFyREJDRGR5NmpCanFtZ1FyU0NMMGk3Y1B1YW5hTWJHS1hCTnEvQVFzWWdISmNwbUpIY0lQdm5mV1lua0Jtb1JNYVVrRGs3UDV1bUUzUnRFaXI1amZlYTRRcXpET2xVaEJ4MlpYbXIveVBXK2I0UWdnSVdZV0phQVVZVkZCakRFbG5HaVR0YkR1aEhGaVBMRmtDM2JxZTlnODd3eGRCWGlmbTNwN1JBdUNUUkJqQ0VBVnd3SlVnTnY2bHdaZStkN3dJUU5wSHNSYm5ibkFpc2xOOUNzaEpRTkZ0bTNualhaaG1Tb3dreTlzc2lCUHRERVlDQjdnTlN1eDVVeDFpNlJzMVhQZkcvOFpSb21oVmdkc3FxekVzeWt5bWk1Z0VaVUhBYVl4eWhPU2djalFpSTZseUJkeDBXZW1COUZvV3ovUGZRK2Iva29raVZpWlNobnhUTUlkRTdraXYrUllIblBLQ2loaHBXNTBiaG9KaGRIeUJoVlQ1b1JocTNEczZRVHpqajFHbDVYaS8rQjdGeTI5bGVEMVplSlFBRXR5UnhNV2JnNTJKRVdLdnZCMFk0L2NoLzdVOXladEo4RkFEQUhqVUthUGhFVEdpbHVsbjMxditsRFpJd2tZT05lbWR3U1VNOHRlbktZUFEycjZDbHVLM1RGdCtpQks4a0RucHJpbGk5Zis0T3doRjNXMGVJbmpSRkNZYkR3UEN5ckQ0dkFrQUJscFROeERpY3AyNnBwUnZmK2JVendIemRFY0pGVFowV3lKZlV3dHhmQlFINzgrTjFTK0VGa3hKZEhvVVhrSlZKWDNaSVB3WmM0Tmt2QTBpSE8rUEQxdnNEc1pYeGlmbFh2cVNmaytxT3lQTnlqMmYzZnFmeUlId0JlTTJ4K2RYa0xua0ZqTElkeVYyNmVZanlJZDJMTnMrNFBiUnlvT1dLR3BWZWtISXJHVUluTG44eDhNaHpCSmFRMEFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Timestamp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X1..What.is.your.age."],"name":[2],"type":["dbl"],"align":["right"]},{"label":["X2..Gender"],"name":[3],"type":["chr"],"align":["left"]},{"label":["X3..Relationship.Status"],"name":[4],"type":["chr"],"align":["left"]},{"label":["X4..Occupation.Status"],"name":[5],"type":["chr"],"align":["left"]},{"label":["X5..What.type.of.organizations.are.you.affiliated.with."],"name":[6],"type":["chr"],"align":["left"]},{"label":["X6..Do.you.use.social.media."],"name":[7],"type":["chr"],"align":["left"]},{"label":["X7..What.social.media.platforms.do.you.commonly.use."],"name":[8],"type":["chr"],"align":["left"]},{"label":["X8..What.is.the.average.time.you.spend.on.social.media.every.day."],"name":[9],"type":["chr"],"align":["left"]},{"label":["X9..How.often.do.you.find.yourself.using.Social.media.without.a.specific.purpose."],"name":[10],"type":["int"],"align":["right"]},{"label":["X10..How.often.do.you.get.distracted.by.Social.media.when.you.are.busy.doing.something."],"name":[11],"type":["int"],"align":["right"]},{"label":["X11..Do.you.feel.restless.if.you.haven.t.used.Social.media.in.a.while."],"name":[12],"type":["int"],"align":["right"]},{"label":["X12..On.a.scale.of.1.to.5..how.easily.distracted.are.you."],"name":[13],"type":["int"],"align":["right"]},{"label":["X13..On.a.scale.of.1.to.5..how.much.are.you.bothered.by.worries."],"name":[14],"type":["int"],"align":["right"]},{"label":["X14..Do.you.find.it.difficult.to.concentrate.on.things."],"name":[15],"type":["int"],"align":["right"]},{"label":["X15..On.a.scale.of.1.5..how.often.do.you.compare.yourself.to.other.successful.people.through.the.use.of.social.media."],"name":[16],"type":["int"],"align":["right"]},{"label":["X16..Following.the.previous.question..how.do.you.feel.about.these.comparisons..generally.speaking."],"name":[17],"type":["int"],"align":["right"]},{"label":["X17..How.often.do.you.look.to.seek.validation.from.features.of.social.media."],"name":[18],"type":["int"],"align":["right"]},{"label":["X18..How.often.do.you.feel.depressed.or.down."],"name":[19],"type":["int"],"align":["right"]},{"label":["X19..On.a.scale.of.1.to.5..how.frequently.does.your.interest.in.daily.activities.fluctuate."],"name":[20],"type":["int"],"align":["right"]},{"label":["X20..On.a.scale.of.1.to.5..how.often.do.you.face.issues.regarding.sleep."],"name":[21],"type":["int"],"align":["right"]}],"data":[{"1":"4/18/2022 19:18:47","2":"21","3":"Male","4":"In a relationship","5":"University Student","6":"University","7":"Yes","8":"Facebook, Twitter, Instagram, YouTube, Discord, Reddit","9":"Between 2 and 3 hours","10":"5","11":"3","12":"2","13":"5","14":"2","15":"5","16":"2","17":"3","18":"2","19":"5","20":"4","21":"5","_rn_":"1"},{"1":"4/18/2022 19:19:28","2":"21","3":"Female","4":"Single","5":"University Student","6":"University","7":"Yes","8":"Facebook, Twitter, Instagram, YouTube, Discord, Reddit","9":"More than 5 hours","10":"4","11":"3","12":"2","13":"4","14":"5","15":"4","16":"5","17":"1","18":"1","19":"5","20":"4","21":"5","_rn_":"2"},{"1":"4/18/2022 19:25:59","2":"21","3":"Female","4":"Single","5":"University Student","6":"University","7":"Yes","8":"Facebook, Instagram, YouTube, Pinterest","9":"Between 3 and 4 hours","10":"3","11":"2","12":"1","13":"2","14":"5","15":"4","16":"3","17":"3","18":"1","19":"4","20":"2","21":"5","_rn_":"3"},{"1":"4/18/2022 19:29:43","2":"21","3":"Female","4":"Single","5":"University Student","6":"University","7":"Yes","8":"Facebook, Instagram","9":"More than 5 hours","10":"4","11":"2","12":"1","13":"3","14":"5","15":"3","16":"5","17":"1","18":"2","19":"4","20":"3","21":"2","_rn_":"4"},{"1":"4/18/2022 19:33:31","2":"21","3":"Female","4":"Single","5":"University Student","6":"University","7":"Yes","8":"Facebook, Instagram, YouTube","9":"Between 2 and 3 hours","10":"3","11":"5","12":"4","13":"4","14":"5","15":"5","16":"3","17":"3","18":"3","19":"4","20":"4","21":"1","_rn_":"5"},{"1":"4/18/2022 19:33:48","2":"22","3":"Female","4":"Single","5":"University Student","6":"University","7":"Yes","8":"Facebook, Twitter, Instagram, YouTube, Discord, Pinterest, TikTok","9":"Between 2 and 3 hours","10":"4","11":"4","12":"2","13":"3","14":"4","15":"3","16":"4","17":"4","18":"3","19":"3","20":"2","21":"4","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[21]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
+<pre class="r"><code>NA</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="data-wrangling" class="section level4">
 <h4>Data Wrangling</h4>
 <p>Include R code and written explanation for wangling your data (you
 can make multiple wrangled data sets).</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbnNwZWN0IHRoZSBzdHJ1Y3R1cmUgb2YgdGhlIGRhdGFzZXRzXG5zdHIoc29jaWFsX21lZGlhKVxuYGBgIn0= -->
+<pre class="r"><code># Inspect the structure of the datasets
+str(social_media)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MTUxIG9icy4gb2YgIDEwIHZhcmlhYmxlczpcbiAkIFVzZXJfSUQgICAgICAgICAgICAgICAgICAgOiBjaHIgIFwiMTBcIiBcIjg3N1wiIFwiMjMwXCIgXCI4NzZcIiAuLi5cbiAkIEFnZSAgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgIFwiMzFcIiBcIjMyXCIgXCIyNlwiIFwiMjhcIiAuLi5cbiAkIEdlbmRlciAgICAgICAgICAgICAgICAgICAgOiBjaHIgIFwiTWFsZVwiIFwiRmVtYWxlXCIgXCJOb24tYmluYXJ5XCIgXCJOb24tYmluYXJ5XCIgLi4uXG4gJCBQbGF0Zm9ybSAgICAgICAgICAgICAgICAgIDogY2hyICBcIkluc3RhZ3JhbVwiIFwiSW5zdGFncmFtXCIgXCJGYWNlYm9va1wiIFwiU25hcGNoYXRcIiAuLi5cbiAkIERhaWx5X1VzYWdlX1RpbWUuLm1pbnV0ZXMuOiBjaHIgIFwiMTcwXCIgXCIxNTVcIiBcIjQ1XCIgXCIxMTVcIiAuLi5cbiAkIFBvc3RzX1Blcl9EYXkgICAgICAgICAgICAgOiBpbnQgIDUgNiAxIDMgMyAzIDMgMSA2IDQgLi4uXG4gJCBMaWtlc19SZWNlaXZlZF9QZXJfRGF5ICAgIDogaW50ICA4MCA3NSA4IDM4IDM4IDM4IDM4IDEzIDg1IDM4IC4uLlxuICQgQ29tbWVudHNfUmVjZWl2ZWRfUGVyX0RheSA6IGludCAgMjAgMjUgNCAxOCAxOCAxOCAxOCA4IDE5IDEzIC4uLlxuICQgTWVzc2FnZXNfU2VudF9QZXJfRGF5ICAgICA6IGNociAgXCIzNVwiIFwiMzhcIiBcIjEyXCIgXCIyN1wiIC4uLlxuICQgRG9taW5hbnRfRW1vdGlvbiAgICAgICAgICA6IGNociAgXCJIYXBwaW5lc3NcIiBcIkhhcHBpbmVzc1wiIFwiU2FkbmVzc1wiIFwiQW54aWV0eVwiIC4uLlxuIn0= -->
+<pre><code>&#39;data.frame&#39;:   151 obs. of  10 variables:
+ $ User_ID                   : chr  &quot;10&quot; &quot;877&quot; &quot;230&quot; &quot;876&quot; ...
+ $ Age                       : chr  &quot;31&quot; &quot;32&quot; &quot;26&quot; &quot;28&quot; ...
+ $ Gender                    : chr  &quot;Male&quot; &quot;Female&quot; &quot;Non-binary&quot; &quot;Non-binary&quot; ...
+ $ Platform                  : chr  &quot;Instagram&quot; &quot;Instagram&quot; &quot;Facebook&quot; &quot;Snapchat&quot; ...
+ $ Daily_Usage_Time..minutes.: chr  &quot;170&quot; &quot;155&quot; &quot;45&quot; &quot;115&quot; ...
+ $ Posts_Per_Day             : int  5 6 1 3 3 3 3 1 6 4 ...
+ $ Likes_Received_Per_Day    : int  80 75 8 38 38 38 38 13 85 38 ...
+ $ Comments_Received_Per_Day : int  20 25 4 18 18 18 18 8 19 13 ...
+ $ Messages_Sent_Per_Day     : chr  &quot;35&quot; &quot;38&quot; &quot;12&quot; &quot;27&quot; ...
+ $ Dominant_Emotion          : chr  &quot;Happiness&quot; &quot;Happiness&quot; &quot;Sadness&quot; &quot;Anxiety&quot; ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG1lbnRhbF9oZWFsdGgpXG5gYGAifQ== -->
+<pre class="r"><code>str(mental_health)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0NDgxIG9icy4gb2YgIDIxIHZhcmlhYmxlczpcbiAkIFRpbWVzdGFtcCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyICBcIjQvMTgvMjAyMiAxOToxODo0N1wiIFwiNC8xOC8yMDIyIDE5OjE5OjI4XCIgXCI0LzE4LzIwMjIgMTk6MjU6NTlcIiBcIjQvMTgvMjAyMiAxOToyOTo0M1wiIC4uLlxuICQgWDEuLldoYXQuaXMueW91ci5hZ2UuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBudW0gIDIxIDIxIDIxIDIxIDIxIDIyIDIxIDIxIDIxIDIwIC4uLlxuICQgWDIuLkdlbmRlciAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgIFwiTWFsZVwiIFwiRmVtYWxlXCIgXCJGZW1hbGVcIiBcIkZlbWFsZVwiIC4uLlxuICQgWDMuLlJlbGF0aW9uc2hpcC5TdGF0dXMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgIFwiSW4gYSByZWxhdGlvbnNoaXBcIiBcIlNpbmdsZVwiIFwiU2luZ2xlXCIgXCJTaW5nbGVcIiAuLi5cbiAkIFg0Li5PY2N1cGF0aW9uLlN0YXR1cyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyICBcIlVuaXZlcnNpdHkgU3R1ZGVudFwiIFwiVW5pdmVyc2l0eSBTdHVkZW50XCIgXCJVbml2ZXJzaXR5IFN0dWRlbnRcIiBcIlVuaXZlcnNpdHkgU3R1ZGVudFwiIC4uLlxuICQgWDUuLldoYXQudHlwZS5vZi5vcmdhbml6YXRpb25zLmFyZS55b3UuYWZmaWxpYXRlZC53aXRoLiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgIFwiVW5pdmVyc2l0eVwiIFwiVW5pdmVyc2l0eVwiIFwiVW5pdmVyc2l0eVwiIFwiVW5pdmVyc2l0eVwiIC4uLlxuICQgWDYuLkRvLnlvdS51c2Uuc29jaWFsLm1lZGlhLiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgIFwiWWVzXCIgXCJZZXNcIiBcIlllc1wiIFwiWWVzXCIgLi4uXG4gJCBYNy4uV2hhdC5zb2NpYWwubWVkaWEucGxhdGZvcm1zLmRvLnlvdS5jb21tb25seS51c2UuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociAgXCJGYWNlYm9vaywgVHdpdHRlciwgSW5zdGFncmFtLCBZb3VUdWJlLCBEaXNjb3JkLCBSZWRkaXRcIiBcIkZhY2Vib29rLCBUd2l0dGVyLCBJbnN0YWdyYW0sIFlvdVR1YmUsIERpc2NvcmQsIFJlZGRpdFwiIFwiRmFjZWJvb2ssIEluc3RhZ3JhbSwgWW91VHViZSwgUGludGVyZXN0XCIgXCJGYWNlYm9vaywgSW5zdGFncmFtXCIgLi4uXG4gJCBYOC4uV2hhdC5pcy50aGUuYXZlcmFnZS50aW1lLnlvdS5zcGVuZC5vbi5zb2NpYWwubWVkaWEuZXZlcnkuZGF5LiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociAgXCJCZXR3ZWVuIDIgYW5kIDMgaG91cnNcIiBcIk1vcmUgdGhhbiA1IGhvdXJzXCIgXCJCZXR3ZWVuIDMgYW5kIDQgaG91cnNcIiBcIk1vcmUgdGhhbiA1IGhvdXJzXCIgLi4uXG4gJCBYOS4uSG93Lm9mdGVuLmRvLnlvdS5maW5kLnlvdXJzZWxmLnVzaW5nLlNvY2lhbC5tZWRpYS53aXRob3V0LmEuc3BlY2lmaWMucHVycG9zZS4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGludCAgNSA0IDMgNCAzIDQgNCA1IDUgMSAuLi5cbiAkIFgxMC4uSG93Lm9mdGVuLmRvLnlvdS5nZXQuZGlzdHJhY3RlZC5ieS5Tb2NpYWwubWVkaWEud2hlbi55b3UuYXJlLmJ1c3kuZG9pbmcuc29tZXRoaW5nLiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogaW50ICAzIDMgMiAyIDUgNCAzIDIgMiAxIC4uLlxuICQgWDExLi5Eby55b3UuZmVlbC5yZXN0bGVzcy5pZi55b3UuaGF2ZW4udC51c2VkLlNvY2lhbC5tZWRpYS5pbi5hLndoaWxlLiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBpbnQgIDIgMiAxIDEgNCAyIDIgMyAzIDEgLi4uXG4gJCBYMTIuLk9uLmEuc2NhbGUub2YuMS50by41Li5ob3cuZWFzaWx5LmRpc3RyYWN0ZWQuYXJlLnlvdS4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGludCAgNSA0IDIgMyA0IDMgMiAzIDMgMSAuLi5cbiAkIFgxMy4uT24uYS5zY2FsZS5vZi4xLnRvLjUuLmhvdy5tdWNoLmFyZS55b3UuYm90aGVyZWQuYnkud29ycmllcy4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogaW50ICAyIDUgNSA1IDUgNCA0IDMgMSAxIC4uLlxuICQgWDE0Li5Eby55b3UuZmluZC5pdC5kaWZmaWN1bHQudG8uY29uY2VudHJhdGUub24udGhpbmdzLiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBpbnQgIDUgNCA0IDMgNSAzIDMgMSAxIDEgLi4uXG4gJCBYMTUuLk9uLmEuc2NhbGUub2YuMS41Li5ob3cub2Z0ZW4uZG8ueW91LmNvbXBhcmUueW91cnNlbGYudG8ub3RoZXIuc3VjY2Vzc2Z1bC5wZW9wbGUudGhyb3VnaC50aGUudXNlLm9mLnNvY2lhbC5tZWRpYS46IGludCAgMiA1IDMgNSAzIDQgNSAxIDEgMSAuLi5cbiAkIFgxNi4uRm9sbG93aW5nLnRoZS5wcmV2aW91cy5xdWVzdGlvbi4uaG93LmRvLnlvdS5mZWVsLmFib3V0LnRoZXNlLmNvbXBhcmlzb25zLi5nZW5lcmFsbHkuc3BlYWtpbmcuICAgICAgICAgICAgICAgICAgIDogaW50ICAzIDEgMyAxIDMgNCAzIDMgMyAxIC4uLlxuICQgWDE3Li5Ib3cub2Z0ZW4uZG8ueW91Lmxvb2sudG8uc2Vlay52YWxpZGF0aW9uLmZyb20uZmVhdHVyZXMub2Yuc29jaWFsLm1lZGlhLiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBpbnQgIDIgMSAxIDIgMyAzIDQgMSAxIDEgLi4uXG4gJCBYMTguLkhvdy5vZnRlbi5kby55b3UuZmVlbC5kZXByZXNzZWQub3IuZG93bi4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGludCAgNSA1IDQgNCA0IDMgNSA1IDUgMSAuLi5cbiAkIFgxOS4uT24uYS5zY2FsZS5vZi4xLnRvLjUuLmhvdy5mcmVxdWVudGx5LmRvZXMueW91ci5pbnRlcmVzdC5pbi5kYWlseS5hY3Rpdml0aWVzLmZsdWN0dWF0ZS4gICAgICAgICAgICAgICAgICAgICAgICAgIDogaW50ICA0IDQgMiAzIDQgMiA1IDUgNSAxIC4uLlxuICQgWDIwLi5Pbi5hLnNjYWxlLm9mLjEudG8uNS4uaG93Lm9mdGVuLmRvLnlvdS5mYWNlLmlzc3Vlcy5yZWdhcmRpbmcuc2xlZXAuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBpbnQgIDUgNSA1IDIgMSA0IDMgMSAxIDEgLi4uXG4ifQ== -->
+<pre><code>&#39;data.frame&#39;:   481 obs. of  21 variables:
+ $ Timestamp                                                                                                            : chr  &quot;4/18/2022 19:18:47&quot; &quot;4/18/2022 19:19:28&quot; &quot;4/18/2022 19:25:59&quot; &quot;4/18/2022 19:29:43&quot; ...
+ $ X1..What.is.your.age.                                                                                                : num  21 21 21 21 21 22 21 21 21 20 ...
+ $ X2..Gender                                                                                                           : chr  &quot;Male&quot; &quot;Female&quot; &quot;Female&quot; &quot;Female&quot; ...
+ $ X3..Relationship.Status                                                                                              : chr  &quot;In a relationship&quot; &quot;Single&quot; &quot;Single&quot; &quot;Single&quot; ...
+ $ X4..Occupation.Status                                                                                                : chr  &quot;University Student&quot; &quot;University Student&quot; &quot;University Student&quot; &quot;University Student&quot; ...
+ $ X5..What.type.of.organizations.are.you.affiliated.with.                                                              : chr  &quot;University&quot; &quot;University&quot; &quot;University&quot; &quot;University&quot; ...
+ $ X6..Do.you.use.social.media.                                                                                         : chr  &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; ...
+ $ X7..What.social.media.platforms.do.you.commonly.use.                                                                 : chr  &quot;Facebook, Twitter, Instagram, YouTube, Discord, Reddit&quot; &quot;Facebook, Twitter, Instagram, YouTube, Discord, Reddit&quot; &quot;Facebook, Instagram, YouTube, Pinterest&quot; &quot;Facebook, Instagram&quot; ...
+ $ X8..What.is.the.average.time.you.spend.on.social.media.every.day.                                                    : chr  &quot;Between 2 and 3 hours&quot; &quot;More than 5 hours&quot; &quot;Between 3 and 4 hours&quot; &quot;More than 5 hours&quot; ...
+ $ X9..How.often.do.you.find.yourself.using.Social.media.without.a.specific.purpose.                                    : int  5 4 3 4 3 4 4 5 5 1 ...
+ $ X10..How.often.do.you.get.distracted.by.Social.media.when.you.are.busy.doing.something.                              : int  3 3 2 2 5 4 3 2 2 1 ...
+ $ X11..Do.you.feel.restless.if.you.haven.t.used.Social.media.in.a.while.                                               : int  2 2 1 1 4 2 2 3 3 1 ...
+ $ X12..On.a.scale.of.1.to.5..how.easily.distracted.are.you.                                                            : int  5 4 2 3 4 3 2 3 3 1 ...
+ $ X13..On.a.scale.of.1.to.5..how.much.are.you.bothered.by.worries.                                                     : int  2 5 5 5 5 4 4 3 1 1 ...
+ $ X14..Do.you.find.it.difficult.to.concentrate.on.things.                                                              : int  5 4 4 3 5 3 3 1 1 1 ...
+ $ X15..On.a.scale.of.1.5..how.often.do.you.compare.yourself.to.other.successful.people.through.the.use.of.social.media.: int  2 5 3 5 3 4 5 1 1 1 ...
+ $ X16..Following.the.previous.question..how.do.you.feel.about.these.comparisons..generally.speaking.                   : int  3 1 3 1 3 4 3 3 3 1 ...
+ $ X17..How.often.do.you.look.to.seek.validation.from.features.of.social.media.                                         : int  2 1 1 2 3 3 4 1 1 1 ...
+ $ X18..How.often.do.you.feel.depressed.or.down.                                                                        : int  5 5 4 4 4 3 5 5 5 1 ...
+ $ X19..On.a.scale.of.1.to.5..how.frequently.does.your.interest.in.daily.activities.fluctuate.                          : int  4 4 2 3 4 2 5 5 5 1 ...
+ $ X20..On.a.scale.of.1.to.5..how.often.do.you.face.issues.regarding.sleep.                                             : int  5 5 5 2 1 4 3 1 1 1 ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDaGVjayBmb3IgbWlzc2luZyB2YWx1ZXNcbnN1bW1hcnkoc29jaWFsX21lZGlhKVxuYGBgIn0= -->
+<pre class="r"><code># Check for missing values
+summary(social_media)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgVXNlcl9JRCAgICAgICAgICAgICAgQWdlICAgICAgICAgICAgICAgR2VuZGVyICAgICAgICAgICAgUGxhdGZvcm0gICAgICAgICBEYWlseV9Vc2FnZV9UaW1lLi5taW51dGVzLlxuIExlbmd0aDoxNTEgICAgICAgICBMZW5ndGg6MTUxICAgICAgICAgTGVuZ3RoOjE1MSAgICAgICAgIExlbmd0aDoxNTEgICAgICAgICBMZW5ndGg6MTUxICAgICAgICAgICAgICAgIFxuIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICAgQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICAgICAgICAgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFBvc3RzX1Blcl9EYXkgICAgIExpa2VzX1JlY2VpdmVkX1Blcl9EYXkgQ29tbWVudHNfUmVjZWl2ZWRfUGVyX0RheSBNZXNzYWdlc19TZW50X1Blcl9EYXkgRG9taW5hbnRfRW1vdGlvbiAgXG4gTWluLiAgIDogIDEuMDAwICAgTWluLiAgIDogIDIuMDAgICAgICAgICBNaW4uICAgOiAyLjAwICAgICAgICAgICAgIExlbmd0aDoxNTEgICAgICAgICAgICBMZW5ndGg6MTUxICAgICAgICBcbiAxc3QgUXUuOiAgMi4wMDAgICAxc3QgUXUuOiAyMC4wMCAgICAgICAgIDFzdCBRdS46IDguMDAgICAgICAgICAgICAgQ2xhc3MgOmNoYXJhY3RlciAgICAgIENsYXNzIDpjaGFyYWN0ZXIgIFxuIE1lZGlhbiA6ICAzLjAwMCAgIE1lZGlhbiA6IDMzLjAwICAgICAgICAgTWVkaWFuIDoxNC4wMCAgICAgICAgICAgICBNb2RlICA6Y2hhcmFjdGVyICAgICAgTW9kZSAgOmNoYXJhY3RlciAgXG4gTWVhbiAgIDogIDQuOTczICAgTWVhbiAgIDogMzguNzggICAgICAgICBNZWFuICAgOjE1LjUzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOiAgNS4wMDAgICAzcmQgUXUuOiA1MC4wMCAgICAgICAgIDNyZCBRdS46MjAuMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6MjEwLjAwMCAgIE1heC4gICA6MTEwLjAwICAgICAgICAgTWF4LiAgIDo4Ny4wMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gTkEncyAgIDozICAgICAgICAgTkEncyAgIDozICAgICAgICAgICAgICBOQSdzICAgOjMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiJ9 -->
+<pre><code>   User_ID              Age               Gender            Platform         Daily_Usage_Time..minutes.
+ Length:151         Length:151         Length:151         Length:151         Length:151                
+ Class :character   Class :character   Class :character   Class :character   Class :character          
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character          
+                                                                                                       
+                                                                                                       
+                                                                                                       
+                                                                                                       
+ Posts_Per_Day     Likes_Received_Per_Day Comments_Received_Per_Day Messages_Sent_Per_Day Dominant_Emotion  
+ Min.   :  1.000   Min.   :  2.00         Min.   : 2.00             Length:151            Length:151        
+ 1st Qu.:  2.000   1st Qu.: 20.00         1st Qu.: 8.00             Class :character      Class :character  
+ Median :  3.000   Median : 33.00         Median :14.00             Mode  :character      Mode  :character  
+ Mean   :  4.973   Mean   : 38.78         Mean   :15.53                                                     
+ 3rd Qu.:  5.000   3rd Qu.: 50.00         3rd Qu.:20.00                                                     
+ Max.   :210.000   Max.   :110.00         Max.   :87.00                                                     
+ NA&#39;s   :3         NA&#39;s   :3              NA&#39;s   :3                                                         </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShtZW50YWxfaGVhbHRoKVxuYGBgIn0= -->
+<pre class="r"><code>summary(mental_health)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBUaW1lc3RhbXAgICAgICAgICBYMS4uV2hhdC5pcy55b3VyLmFnZS4gIFgyLi5HZW5kZXIgICAgICAgIFgzLi5SZWxhdGlvbnNoaXAuU3RhdHVzIFg0Li5PY2N1cGF0aW9uLlN0YXR1c1xuIExlbmd0aDo0ODEgICAgICAgICBNaW4uICAgOjEzLjAwICAgICAgICAgTGVuZ3RoOjQ4MSAgICAgICAgIExlbmd0aDo0ODEgICAgICAgICAgICAgIExlbmd0aDo0ODEgICAgICAgICAgIFxuIENsYXNzIDpjaGFyYWN0ZXIgICAxc3QgUXUuOjIxLjAwICAgICAgICAgQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgICAgICAgIENsYXNzIDpjaGFyYWN0ZXIgICAgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNZWRpYW4gOjIyLjAwICAgICAgICAgTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgICAgICAgIE1vZGUgIDpjaGFyYWN0ZXIgICAgIFxuICAgICAgICAgICAgICAgICAgICBNZWFuICAgOjI2LjE0ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAzcmQgUXUuOjI2LjAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICBNYXguICAgOjkxLjAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFg1Li5XaGF0LnR5cGUub2Yub3JnYW5pemF0aW9ucy5hcmUueW91LmFmZmlsaWF0ZWQud2l0aC4gWDYuLkRvLnlvdS51c2Uuc29jaWFsLm1lZGlhLlxuIExlbmd0aDo0ODEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTGVuZ3RoOjQ4MSAgICAgICAgICAgICAgICAgIFxuIENsYXNzIDpjaGFyYWN0ZXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgQ2xhc3MgOmNoYXJhY3RlciAgICAgICAgICAgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTW9kZSAgOmNoYXJhY3RlciAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFg3Li5XaGF0LnNvY2lhbC5tZWRpYS5wbGF0Zm9ybXMuZG8ueW91LmNvbW1vbmx5LnVzZS5cbiBMZW5ndGg6NDgxICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gQ2xhc3MgOmNoYXJhY3RlciAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBYOC4uV2hhdC5pcy50aGUuYXZlcmFnZS50aW1lLnlvdS5zcGVuZC5vbi5zb2NpYWwubWVkaWEuZXZlcnkuZGF5LlxuIExlbmd0aDo0ODEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gQ2xhc3MgOmNoYXJhY3RlciAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNb2RlICA6Y2hhcmFjdGVyICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFg5Li5Ib3cub2Z0ZW4uZG8ueW91LmZpbmQueW91cnNlbGYudXNpbmcuU29jaWFsLm1lZGlhLndpdGhvdXQuYS5zcGVjaWZpYy5wdXJwb3NlLlxuIE1pbi4gICA6MS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDFzdCBRdS46My4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lZGlhbiA6NC4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lYW4gICA6My41NTMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDNyZCBRdS46NC4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6NS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFgxMC4uSG93Lm9mdGVuLmRvLnlvdS5nZXQuZGlzdHJhY3RlZC5ieS5Tb2NpYWwubWVkaWEud2hlbi55b3UuYXJlLmJ1c3kuZG9pbmcuc29tZXRoaW5nLlxuIE1pbi4gICA6MS4wMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDFzdCBRdS46Mi4wMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lZGlhbiA6My4wMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lYW4gICA6My4zMiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDNyZCBRdS46NC4wMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6NS4wMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFgxMS4uRG8ueW91LmZlZWwucmVzdGxlc3MuaWYueW91LmhhdmVuLnQudXNlZC5Tb2NpYWwubWVkaWEuaW4uYS53aGlsZS5cbiBNaW4uICAgOjEuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gMXN0IFF1LjoyLjAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lZGlhbiA6Mi4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNZWFuICAgOjIuNTg4ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gM3JkIFF1LjozLjAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6NS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBYMTIuLk9uLmEuc2NhbGUub2YuMS50by41Li5ob3cuZWFzaWx5LmRpc3RyYWN0ZWQuYXJlLnlvdS5cbiBNaW4uICAgOjEuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAxc3QgUXUuOjMuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNZWRpYW4gOjMuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNZWFuICAgOjMuMzQ5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOjQuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNYXguICAgOjUuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBYMTMuLk9uLmEuc2NhbGUub2YuMS50by41Li5ob3cubXVjaC5hcmUueW91LmJvdGhlcmVkLmJ5LndvcnJpZXMuXG4gTWluLiAgIDoxLjAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDFzdCBRdS46My4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNZWRpYW4gOjQuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gTWVhbiAgIDozLjU1OSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDNyZCBRdS46NS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNYXguICAgOjUuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gWDE0Li5Eby55b3UuZmluZC5pdC5kaWZmaWN1bHQudG8uY29uY2VudHJhdGUub24udGhpbmdzLlxuIE1pbi4gICA6MS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAxc3QgUXUuOjIuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gTWVkaWFuIDozLjAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lYW4gICA6My4yNDUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOjQuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gTWF4LiAgIDo1LjAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFgxNS4uT24uYS5zY2FsZS5vZi4xLjUuLmhvdy5vZnRlbi5kby55b3UuY29tcGFyZS55b3Vyc2VsZi50by5vdGhlci5zdWNjZXNzZnVsLnBlb3BsZS50aHJvdWdoLnRoZS51c2Uub2Yuc29jaWFsLm1lZGlhLlxuIE1pbi4gICA6MS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDFzdCBRdS46Mi4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lZGlhbiA6My4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lYW4gICA6Mi44MzIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDNyZCBRdS46NC4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6NS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFgxNi4uRm9sbG93aW5nLnRoZS5wcmV2aW91cy5xdWVzdGlvbi4uaG93LmRvLnlvdS5mZWVsLmFib3V0LnRoZXNlLmNvbXBhcmlzb25zLi5nZW5lcmFsbHkuc3BlYWtpbmcuXG4gTWluLiAgIDoxLjAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAxc3QgUXUuOjIuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lZGlhbiA6My4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gTWVhbiAgIDoyLjc3NSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOjMuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6NS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gWDE3Li5Ib3cub2Z0ZW4uZG8ueW91Lmxvb2sudG8uc2Vlay52YWxpZGF0aW9uLmZyb20uZmVhdHVyZXMub2Yuc29jaWFsLm1lZGlhLlxuIE1pbi4gICA6MS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAxc3QgUXUuOjEuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gTWVkaWFuIDoyLjAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lYW4gICA6Mi40NTUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOjMuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gTWF4LiAgIDo1LjAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFgxOC4uSG93Lm9mdGVuLmRvLnlvdS5mZWVsLmRlcHJlc3NlZC5vci5kb3duLlxuIE1pbi4gICA6MS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDFzdCBRdS46Mi4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lZGlhbiA6My4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lYW4gICA6My4yNTYgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDNyZCBRdS46NC4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6NS4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFgxOS4uT24uYS5zY2FsZS5vZi4xLnRvLjUuLmhvdy5mcmVxdWVudGx5LmRvZXMueW91ci5pbnRlcmVzdC5pbi5kYWlseS5hY3Rpdml0aWVzLmZsdWN0dWF0ZS5cbiBNaW4uICAgOjEuMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gMXN0IFF1LjoyLjAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1lZGlhbiA6My4wMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNZWFuICAgOjMuMTcgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gM3JkIFF1Ljo0LjAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6NS4wMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBYMjAuLk9uLmEuc2NhbGUub2YuMS50by41Li5ob3cub2Z0ZW4uZG8ueW91LmZhY2UuaXNzdWVzLnJlZ2FyZGluZy5zbGVlcC5cbiBNaW4uICAgOjEuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAxc3QgUXUuOjIuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNZWRpYW4gOjMuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNZWFuICAgOjMuMjAyICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOjUuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNYXguICAgOjUuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiJ9 -->
+<pre><code>  Timestamp         X1..What.is.your.age.  X2..Gender        X3..Relationship.Status X4..Occupation.Status
+ Length:481         Min.   :13.00         Length:481         Length:481              Length:481           
+ Class :character   1st Qu.:21.00         Class :character   Class :character        Class :character     
+ Mode  :character   Median :22.00         Mode  :character   Mode  :character        Mode  :character     
+                    Mean   :26.14                                                                         
+                    3rd Qu.:26.00                                                                         
+                    Max.   :91.00                                                                         
+ X5..What.type.of.organizations.are.you.affiliated.with. X6..Do.you.use.social.media.
+ Length:481                                              Length:481                  
+ Class :character                                        Class :character            
+ Mode  :character                                        Mode  :character            
+                                                                                     
+                                                                                     
+                                                                                     
+ X7..What.social.media.platforms.do.you.commonly.use.
+ Length:481                                          
+ Class :character                                    
+ Mode  :character                                    
+                                                     
+                                                     
+                                                     
+ X8..What.is.the.average.time.you.spend.on.social.media.every.day.
+ Length:481                                                       
+ Class :character                                                 
+ Mode  :character                                                 
+                                                                  
+                                                                  
+                                                                  
+ X9..How.often.do.you.find.yourself.using.Social.media.without.a.specific.purpose.
+ Min.   :1.000                                                                    
+ 1st Qu.:3.000                                                                    
+ Median :4.000                                                                    
+ Mean   :3.553                                                                    
+ 3rd Qu.:4.000                                                                    
+ Max.   :5.000                                                                    
+ X10..How.often.do.you.get.distracted.by.Social.media.when.you.are.busy.doing.something.
+ Min.   :1.00                                                                           
+ 1st Qu.:2.00                                                                           
+ Median :3.00                                                                           
+ Mean   :3.32                                                                           
+ 3rd Qu.:4.00                                                                           
+ Max.   :5.00                                                                           
+ X11..Do.you.feel.restless.if.you.haven.t.used.Social.media.in.a.while.
+ Min.   :1.000                                                         
+ 1st Qu.:2.000                                                         
+ Median :2.000                                                         
+ Mean   :2.588                                                         
+ 3rd Qu.:3.000                                                         
+ Max.   :5.000                                                         
+ X12..On.a.scale.of.1.to.5..how.easily.distracted.are.you.
+ Min.   :1.000                                            
+ 1st Qu.:3.000                                            
+ Median :3.000                                            
+ Mean   :3.349                                            
+ 3rd Qu.:4.000                                            
+ Max.   :5.000                                            
+ X13..On.a.scale.of.1.to.5..how.much.are.you.bothered.by.worries.
+ Min.   :1.000                                                   
+ 1st Qu.:3.000                                                   
+ Median :4.000                                                   
+ Mean   :3.559                                                   
+ 3rd Qu.:5.000                                                   
+ Max.   :5.000                                                   
+ X14..Do.you.find.it.difficult.to.concentrate.on.things.
+ Min.   :1.000                                          
+ 1st Qu.:2.000                                          
+ Median :3.000                                          
+ Mean   :3.245                                          
+ 3rd Qu.:4.000                                          
+ Max.   :5.000                                          
+ X15..On.a.scale.of.1.5..how.often.do.you.compare.yourself.to.other.successful.people.through.the.use.of.social.media.
+ Min.   :1.000                                                                                                        
+ 1st Qu.:2.000                                                                                                        
+ Median :3.000                                                                                                        
+ Mean   :2.832                                                                                                        
+ 3rd Qu.:4.000                                                                                                        
+ Max.   :5.000                                                                                                        
+ X16..Following.the.previous.question..how.do.you.feel.about.these.comparisons..generally.speaking.
+ Min.   :1.000                                                                                     
+ 1st Qu.:2.000                                                                                     
+ Median :3.000                                                                                     
+ Mean   :2.775                                                                                     
+ 3rd Qu.:3.000                                                                                     
+ Max.   :5.000                                                                                     
+ X17..How.often.do.you.look.to.seek.validation.from.features.of.social.media.
+ Min.   :1.000                                                               
+ 1st Qu.:1.000                                                               
+ Median :2.000                                                               
+ Mean   :2.455                                                               
+ 3rd Qu.:3.000                                                               
+ Max.   :5.000                                                               
+ X18..How.often.do.you.feel.depressed.or.down.
+ Min.   :1.000                                
+ 1st Qu.:2.000                                
+ Median :3.000                                
+ Mean   :3.256                                
+ 3rd Qu.:4.000                                
+ Max.   :5.000                                
+ X19..On.a.scale.of.1.to.5..how.frequently.does.your.interest.in.daily.activities.fluctuate.
+ Min.   :1.00                                                                               
+ 1st Qu.:2.00                                                                               
+ Median :3.00                                                                               
+ Mean   :3.17                                                                               
+ 3rd Qu.:4.00                                                                               
+ Max.   :5.00                                                                               
+ X20..On.a.scale.of.1.to.5..how.often.do.you.face.issues.regarding.sleep.
+ Min.   :1.000                                                           
+ 1st Qu.:2.000                                                           
+ Median :3.000                                                           
+ Mean   :3.202                                                           
+ 3rd Qu.:5.000                                                           
+ Max.   :5.000                                                           </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29jaWFsX21lZGlhX3N1bW1hcnkgPC0gc29jaWFsX21lZGlhICU+JVxuICBncm91cF9ieShVc2VyX0lEKSAlPiVcbiAgc3VtbWFyaXNlKGF2Z19zb2NpYWxfbWVkaWFfdXNhZ2UgPSBtZWFuKGhvdXJzX3NwZW50LCBuYS5ybSA9IFRSVUUpKVxuYGBgIn0= -->
+<pre class="r"><code>social_media_summary &lt;- social_media %&gt;%
+  group_by(User_ID) %&gt;%
+  summarise(avg_social_media_usage = mean(hours_spent, na.rm = TRUE))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gc29jaWFsX21lZGlhICU+JSBncm91cF9ieShVc2VyX0lEKSAlPiUgc3VtbWFyaXNlKGF2Z19zb2NpYWxfbWVkaWFfdXNhZ2UgPSBtZWFuKGhvdXJzX3NwZW50LCAgOiBcbiAgY291bGQgbm90IGZpbmQgZnVuY3Rpb24gXCIlPiVcIlxuIn0= -->
+<pre><code>Error in social_media %&gt;% group_by(User_ID) %&gt;% summarise(avg_social_media_usage = mean(hours_spent,  : 
+  could not find function &quot;%&gt;%&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 </div>
 <div id="data-visualization" class="section level2">
@@ -1800,7 +2109,7 @@ question is using the data sets and visualizations you created.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW5pdGlhbCBFREEgQmFzaWMgT3V0bGluZSIKYXV0aG9yOiAiTmFtZXMgb2YgYWxsIGdyb3VwIG1lbWJlcnMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClRoaXMgaXMgYW4gb3V0bGluZSBmb3IgeW91ciBJbml0aWFsIEVEQS4gWW91IGNhbiBmb2xsb3cgdGhpcyBvdXRsaW5lLCBvciB5b3UgY2FuIG1vZGlmeSBpdCBhcyB5b3Ugc2VlIGZpdC4gRG8gd2hhdCB3b3JrcyBiZXN0IGZvciB5b3VyIHByb2plY3QuIAoKIyMgUmVzZWFyY2ggUXVlc3Rpb24gCgpTdGF0ZSB5b3VyIHNwZWNpZmljIHJlc2VhcmNoIHF1ZXN0aW9uIGFuZCB3aHkgaXQgaXMgaW50ZXJlc3RpbmcuIAoKCgojIyBEYXRhIFByb2Nlc3NpbmcgCgojIyMjIERhdGEgSW50YWtlIAoKSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gdG8gaW1wb3J0IHlvdXIgKipUV08qKiBkYXRhIHNldHMuCgojIyMjIERhdGEgV3JhbmdsaW5nIAoKSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gZm9yIHdhbmdsaW5nIHlvdXIgZGF0YSAoeW91IGNhbiBtYWtlIG11bHRpcGxlIHdyYW5nbGVkIGRhdGEgc2V0cykuIAoKCgoKIyMgRGF0YSBWaXN1YWxpemF0aW9uCgojIyMjIFBsb3QgMQoKSW5jbHVkZSBSIGNvZGUgdG8gbWFrZSBvbmUgZGF0YSB2aXN1YWxpemF0aW9uIChJIHdvdWxkIGVuY291cmFnZSB5b3UgdG8gdXNlIDMgb3IgbW9yZSB2YXJpYWJsZXMpLiBJbmNsdWRlIGEgYnJpZWYgd3JpdHRlbiBkZXNjcmlwdGlvbiBvZiB3aGF0IHlvdXIgZ3JhcGggc2hvd3MuIElzIHRoaXMgZ3JhcGggaGVscGZ1bCBpbiBhbnN3ZXJpbmcgeW91ciByZXNlYXJjaCBxdWVzdGlvbj8gSWYgaXQgaXMgaGVscGZ1bCwgd2lsbCB5b3UgbmVlZCB0byBhZGQvbW9kaWZ5IGFueXRoaW5nIGluIHRoaXMgZ3JhcGggaW4gdGhlIGZpbmFsIHJlcG9ydD8gCgojIyMjIFBsb3QgMgoKSW5jbHVkZSBSIGNvZGUgdG8gbWFrZSBvbmUgZGF0YSB2aXN1YWxpemF0aW9uIChJIHdvdWxkIGVuY291cmFnZSB5b3UgdG8gdXNlIDMgb3IgbW9yZSB2YXJpYWJsZXMpLiBJbmNsdWRlIGEgYnJpZWYgd3JpdHRlbiBkZXNjcmlwdGlvbiBvZiB3aGF0IHlvdXIgZ3JhcGggc2hvd3MuIElzIHRoaXMgZ3JhcGggaGVscGZ1bCBpbiBhbnN3ZXJpbmcgeW91ciByZXNlYXJjaCBxdWVzdGlvbj8gSWYgaXQgaXMgaGVscGZ1bCwgd2lsbCB5b3UgbmVlZCB0byBhZGQvbW9kaWZ5IGFueXRoaW5nIGluIHRoaXMgZ3JhcGggaW4gdGhlIGZpbmFsIHJlcG9ydD8gCgoKIyMgQ29uY2x1c2lvbgoKSW5jbHVkZSB5b3VyIGluaXRpYWwgaW50dWl0aW9uIGFzIHRvIHdoYXQgdGhlIGFuc3dlciB0byB5b3VyIHJlc2VhcmNoIHF1ZXN0aW9uIGlzIHVzaW5nIHRoZSBkYXRhIHNldHMgYW5kIHZpc3VhbGl6YXRpb25zIHlvdSBjcmVhdGVkLiA=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkluaXRpYWwgRURBIEJhc2ljIE91dGxpbmUiDQphdXRob3I6ICJBcm5hdiBCZWRpIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KVGhpcyBpcyBhbiBvdXRsaW5lIGZvciB5b3VyIEluaXRpYWwgRURBLiBZb3UgY2FuIGZvbGxvdyB0aGlzIG91dGxpbmUsIG9yIHlvdSBjYW4gbW9kaWZ5IGl0IGFzIHlvdSBzZWUgZml0LiBEbyB3aGF0IHdvcmtzIGJlc3QgZm9yIHlvdXIgcHJvamVjdC4gDQoNCiMjIFJlc2VhcmNoIFF1ZXN0aW9uIA0KDQpNeSB0b3BpYyBmb3IgdGhpcyBmaW5hbCBwcm9qZWN0IGlzIGdvaW5nIHRvIGJlIEFuYWx5emluZyB0aGUgRWZmZWN0IG9mIFNvY2lhbCBNZWRpYSBvbiBNZW50YWwgSGVhbHRoDQoNCkkgd2FudCB0byBleHBsb3JlIHRoZSByZWxhdGlvbnNoaXAgYmV0d2VlbiBzb2NpYWwgbWVkaWEgdXNhZ2UgYW5kIG1lbnRhbCBoZWFsdGggb3V0Y29tZXMuIEkgd2FudCB0byByZXNlYXJjaCB0aGlzIGFuZCBtYWtlIGEgcHJvamVjdCBvbiB0aGlzIHRvcGljIGFzIGl0IHdvdWxkIGJlIGJlbmVmaWNpYWwgaW4gdGhlIGlkZW50aWZpY2F0aW9uIG9mIHRoZSByaXNrIGZhY3RvcnMsIHByb21vdGlvbiBvZiBwb3NpdGl2ZSB1c2FnZSBvZiBzb2NpYWwgbWVkaWEgYXMgd2VsbCBhcyB0aGVzZSBmaW5kaW5ncyBjYW4gYmUgc2hhcmVkIHdpdGggbWVudGFsIGhlYWx0aCBwcm9mZXNzaW9uYWxzLCBlZHVjYXRvcnMsIGFuZCBzb2NpYWwgbWVkaWEgY29tcGFuaWVzIHRvIGhlbHAgdGhlbSB1bmRlcnN0YW5kIGhvdyB0byBiZXR0ZXIgc3VwcG9ydCB1c2Vyc+KAmSBtZW50YWwgaGVhbHRoLiBCeSBhbmFseXppbmcgZGF0YSBmcm9tIHNvY2lhbCBtZWRpYSBwbGF0Zm9ybXMgYW5kIG1lbnRhbCBoZWFsdGggc3VydmV5cywgSSBjYW4gYWxzbyBpZGVudGlmeSBjb3JyZWxhdGlvbnMgYmV0d2VlbiBzY3JlZW4gdGltZSwgY29udGVudCB0eXBlLCBhbmQgbWVudGFsIGhlYWx0aCBpbmRpY2F0b3JzIHN1Y2ggYXMgYW54aWV0eSwgZGVwcmVzc2lvbiwgYW5kIHdlbGwtYmVpbmcuIA0KDQoNCg0KIyMgRGF0YSBQcm9jZXNzaW5nIA0KSW5zdGFsbGluZyBuZWNjZXNhcnkgbGlicmFyaWVzIA0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShtb3NhaWMpDQppbnN0YWxsLnBhY2thZ2VzKCJnZ3Bsb3QyIikNCg0KDQpgYGANCg0KIyMjIyBEYXRhIEludGFrZSANCg0KU29jaWFsIE1lZGlhIGRhdGEgc2V0Og0KYGBge3J9DQoNCnNvY2lhbF9tZWRpYSA8LSByZWFkLmNzdigiQzovVXNlcnMvQXJuYXYvRG93bmxvYWRzL3ZhbC5jc3YiKQ0KaGVhZChzb2NpYWxfbWVkaWEpDQoNCg0KYGBgDQpNZW50YWwgSGVhbHRoIGRhdGEgc2V0Og0KYGBge3J9DQoNCm1lbnRhbF9oZWFsdGggPC0gcmVhZC5jc3YoIkM6L1VzZXJzL0FybmF2L0Rvd25sb2Fkcy9zbW1oLmNzdiIpDQpoZWFkKG1lbnRhbF9oZWFsdGgpDQoNCmBgYA0KIyMjIyBEYXRhIFdyYW5nbGluZyANCg0KSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gZm9yIHdhbmdsaW5nIHlvdXIgZGF0YSAoeW91IGNhbiBtYWtlIG11bHRpcGxlIHdyYW5nbGVkIGRhdGEgc2V0cykuIA0KDQpgYGB7cn0NCiMgSW5zcGVjdCB0aGUgc3RydWN0dXJlIG9mIHRoZSBkYXRhc2V0cw0Kc3RyKHNvY2lhbF9tZWRpYSkNCnN0cihtZW50YWxfaGVhbHRoKQ0KDQojIENoZWNrIGZvciBtaXNzaW5nIHZhbHVlcw0Kc3VtbWFyeShzb2NpYWxfbWVkaWEpDQpzdW1tYXJ5KG1lbnRhbF9oZWFsdGgpDQoNCnNvY2lhbF9tZWRpYV9zdW1tYXJ5IDwtIHNvY2lhbF9tZWRpYSAlPiUNCiAgZ3JvdXBfYnkoVXNlcl9JRCkgJT4lDQogIHN1bW1hcmlzZShhdmdfc29jaWFsX21lZGlhX3VzYWdlID0gbWVhbihob3Vyc19zcGVudCwgbmEucm0gPSBUUlVFKSkNCg0KYGBgDQoNCg0KIyMgRGF0YSBWaXN1YWxpemF0aW9uDQoNCiMjIyMgUGxvdCAxDQoNCkluY2x1ZGUgUiBjb2RlIHRvIG1ha2Ugb25lIGRhdGEgdmlzdWFsaXphdGlvbiAoSSB3b3VsZCBlbmNvdXJhZ2UgeW91IHRvIHVzZSAzIG9yIG1vcmUgdmFyaWFibGVzKS4gSW5jbHVkZSBhIGJyaWVmIHdyaXR0ZW4gZGVzY3JpcHRpb24gb2Ygd2hhdCB5b3VyIGdyYXBoIHNob3dzLiBJcyB0aGlzIGdyYXBoIGhlbHBmdWwgaW4gYW5zd2VyaW5nIHlvdXIgcmVzZWFyY2ggcXVlc3Rpb24/IElmIGl0IGlzIGhlbHBmdWwsIHdpbGwgeW91IG5lZWQgdG8gYWRkL21vZGlmeSBhbnl0aGluZyBpbiB0aGlzIGdyYXBoIGluIHRoZSBmaW5hbCByZXBvcnQ/IA0KDQojIyMjIFBsb3QgMg0KDQpJbmNsdWRlIFIgY29kZSB0byBtYWtlIG9uZSBkYXRhIHZpc3VhbGl6YXRpb24gKEkgd291bGQgZW5jb3VyYWdlIHlvdSB0byB1c2UgMyBvciBtb3JlIHZhcmlhYmxlcykuIEluY2x1ZGUgYSBicmllZiB3cml0dGVuIGRlc2NyaXB0aW9uIG9mIHdoYXQgeW91ciBncmFwaCBzaG93cy4gSXMgdGhpcyBncmFwaCBoZWxwZnVsIGluIGFuc3dlcmluZyB5b3VyIHJlc2VhcmNoIHF1ZXN0aW9uPyBJZiBpdCBpcyBoZWxwZnVsLCB3aWxsIHlvdSBuZWVkIHRvIGFkZC9tb2RpZnkgYW55dGhpbmcgaW4gdGhpcyBncmFwaCBpbiB0aGUgZmluYWwgcmVwb3J0PyANCg0KDQojIyBDb25jbHVzaW9uDQoNCkluY2x1ZGUgeW91ciBpbml0aWFsIGludHVpdGlvbiBhcyB0byB3aGF0IHRoZSBhbnN3ZXIgdG8geW91ciByZXNlYXJjaCBxdWVzdGlvbiBpcyB1c2luZyB0aGUgZGF0YSBzZXRzIGFuZCB2aXN1YWxpemF0aW9ucyB5b3UgY3JlYXRlZC4gDQo=</div>
 
 
 

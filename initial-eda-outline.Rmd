@@ -15,26 +15,51 @@ I want to explore the relationship between social media usage and mental health 
 
 
 ## Data Processing 
-Installing neccessary libraries 
+Installing neccesary libraries 
 
 ```{r}
 library(tidyverse)
-library(esquisse)
 library(mosaic)
 install.packages("ggplot2")
-install.packages("esquisse")
+
 
 ```
 
 #### Data Intake 
 
-C:\Users\Arnav\Downloads
+Social Media data set:
+```{r}
 
+social_media <- read.csv("C:/Users/Arnav/Downloads/val.csv")
+head(social_media)
+
+
+```
+Mental Health data set:
+```{r}
+
+mental_health <- read.csv("C:/Users/Arnav/Downloads/smmh.csv")
+head(mental_health)
+
+```
 #### Data Wrangling 
 
 Include R code and written explanation for wangling your data (you can make multiple wrangled data sets). 
 
+```{r}
+# Inspect the structure of the datasets
+str(social_media)
+str(mental_health)
 
+# Check for missing values
+summary(social_media)
+summary(mental_health)
+
+social_media_summary <- social_media %>%
+  group_by(User_ID) %>%
+  summarise(avg_social_media_usage = mean(hours_spent, na.rm = TRUE))
+
+```
 
 
 ## Data Visualization
