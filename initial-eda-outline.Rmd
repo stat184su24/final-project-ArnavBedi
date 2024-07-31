@@ -1,6 +1,6 @@
 ---
 title: "Initial EDA Basic Outline"
-author: "Name of Student"
+author: "Arnav Bedi"
 output: html_notebook
 ---
 
@@ -8,15 +8,27 @@ This is an outline for your Initial EDA. You can follow this outline, or you can
 
 ## Research Question 
 
-State your specific research question and why it is interesting. 
+My topic for this final project is going to be Analyzing the Effect of Social Media on Mental Health
+
+I want to explore the relationship between social media usage and mental health outcomes. I want to research this and make a project on this topic as it would be beneficial in the identification of the risk factors, promotion of positive usage of social media as well as these findings can be shared with mental health professionals, educators, and social media companies to help them understand how to better support users’ mental health. By analyzing data from social media platforms and mental health surveys, I can also identify correlations between screen time, content type, and mental health indicators such as anxiety, depression, and well-being. 
 
 
 
 ## Data Processing 
+Installing neccessary libraries 
+
+```{r}
+library(tidyverse)
+library(esquisse)
+library(mosaic)
+install.packages("ggplot2")
+install.packages("esquisse")
+
+```
 
 #### Data Intake 
 
-Include R code and written explanation to import your **TWO** data sets.
+C:\Users\Arnav\Downloads
 
 #### Data Wrangling 
 
