@@ -35,13 +35,15 @@ Social Media data set:
 social_media <- read.csv("C:/Users/Arnav/Downloads/val.csv")
 head(social_media)
 
-
+colnames(social_media)
 ```
 Mental Health data set:
 ```{r}
 
 mental_health <- read.csv("C:/Users/Arnav/Downloads/smmh.csv")
 head(mental_health)
+
+colnames(mental_health)
 
 ```
 #### Data Wrangling 
@@ -60,6 +62,15 @@ summary(mental_health)
 # Ensuring that Daily_Usage_Time..minutes. column is numeric
 social_media$Daily_Usage_Time..minutes. <- as.numeric(as.character(social_media$Daily_Usage_Time..minutes.))
 
+# Removing rows where platform is "Female" or "55"
+social_media <- social_media %>%
+  filter(Platform != "Female", Platform != "55")
+
+# Removing rows with non-numeric values in daily_usage_time_minutes
+social_media <- social_media %>%
+  filter(!is.na(as.numeric(Daily_Usage_Time..minutes.)), !is.na(Platform)) %>%
+  mutate(Daily_Usage_Time..minutes. = as.numeric(Daily_Usage_Time..minutes.))
+
 # Checking for conversion issues
 summary(social_media$Daily_Usage_Time..minutes.)
 
@@ -68,11 +79,22 @@ social_media_summary <- social_media %>%
   group_by(User_ID) %>%
   summarise(total_hours_spent = sum(Daily_Usage_Time..minutes., na.rm = TRUE) / 60) # Converting minutes to hours
 
+# Aggregating average daily usage time per platform
+platform_summary <- social_media %>%
+  group_by(Platform) %>%
+  summarise(avg_daily_usage_time = mean(Daily_Usage_Time..minutes., na.rm = TRUE) / 60)
+
 # Aggregating mental health scores per day
 mental_health_summary <- mental_health %>%
   group_by(Timestamp) %>%
   summarise(avg_depression_score = mean(X18..How.often.do.you.feel.depressed.or.down., na.rm = TRUE),
-            avg_anxiety_score = mean(X13..On.a.scale.of.1.to.5..how.much.are.you.bothered.by.worries., na.rm = TRUE))
+            avg_anxiety_score = mean(X13..On.a.scale.of.1.to.5..how.much.are.you.bothered.by.worries., na.rm = TRUE),
+            daily_social_media_time = X8..What.is.the.average.time.you.spend.on.social.media.every.day.,)
+
+# Aggregating average daily usage time per dominant emotion
+emotion_summary <- social_media %>%
+  group_by(Dominant_Emotion) %>%
+  summarise(avg_daily_usage_time = mean(Daily_Usage_Time..minutes., na.rm = TRUE) / 60)
 
 
 ```
@@ -82,12 +104,59 @@ mental_health_summary <- mental_health %>%
 
 #### Plot 1
 
-Include R code to make one data visualization (I would encourage you to use 3 or more variables). Include a brief written description of what your graph shows. Is this graph helpful in answering your research question? If it is helpful, will you need to add/modify anything in this graph in the final report? 
+##Plot for Average Daily Usage Time per Platform
+
+```{r}
+
+
+ggplot(platform_summary, aes(x = Platform, y = avg_daily_usage_time, fill = Platform)) +
+  geom_bar(stat = 'identity') +
+  labs(title = "Average Daily Usage Time per Platform (hours)",
+       x = "Platform",
+       y = "Average Daily Usage Time") +
+  theme_minimal()
+```
+This bar chart shows the average daily usage time on different social media platforms. Each bar represents a platform, and the height of the bar indicates the average daily usage time in minutes.
+
+##Plot average daily usage time per dominant emotion:
+
+```{r}
+
+ggplot(emotion_summary, aes(x = Dominant_Emotion, y = avg_daily_usage_time, fill = Dominant_Emotion)) +
+  geom_bar(stat = 'identity') +
+  labs(title = "Average Daily Usage Time per Dominant Emotion (hours) ",
+       x = "Dominant Emotion",
+       y = "Average Daily Usage Time") +
+  theme_minimal()
+
+```
 
 #### Plot 2
 
-Include R code to make one data visualization (I would encourage you to use 3 or more variables). Include a brief written description of what your graph shows. Is this graph helpful in answering your research question? If it is helpful, will you need to add/modify anything in this graph in the final report? 
+## Plot for Relationship between Social Media Usage and Mental Health Indicators
 
+
+```{r}
+
+ggplot(mental_health_summary, aes(x = as.factor(daily_social_media_time), y = avg_depression_score)) +
+  geom_bar(stat = 'identity', fill = "blue", alpha = 0.7) +
+  labs(
+    title = "Average Depression Score by Daily Social Media Usage",
+    x = "Daily Social Media Usage (hours)",
+    y = "Average Depression Score"
+  ) +
+  theme_minimal() +
+  scale_x_discrete(breaks = as.factor(mental_health_summary$daily_social_media_time)) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10),
+    axis.text.y = element_text(size = 12),
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    plot.title = element_text(size = 16, hjust = 0.5)
+  )
+
+```
+The bar graph illustrates the relationship between daily social media usage and the average depression score reported by participants. The x-axis represents the daily time spent on social media, measured in minutes, while the y-axis shows the average score for feeling depressed.
 
 ## Conclusion
 
