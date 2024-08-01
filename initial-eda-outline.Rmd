@@ -108,7 +108,6 @@ emotion_summary <- social_media %>%
 
 ```{r}
 
-
 ggplot(platform_summary, aes(x = Platform, y = avg_daily_usage_time, fill = Platform)) +
   geom_bar(stat = 'identity') +
   labs(title = "Average Daily Usage Time per Platform (hours)",
@@ -160,4 +159,15 @@ The bar graph illustrates the relationship between daily social media usage and 
 
 ## Conclusion
 
-Include your initial intuition as to what the answer to your research question is using the data sets and visualizations you created. 
+#Initial Intuition for the plots in Plot 1:
+
+-Platform Comparison: Some platforms might show higher average depression scores than others. For example, users of certain platforms might report higher feelings of depression due to different usage patterns or social dynamics.
+
+-Social Media Influence: If a particular platform is associated with higher average depression scores, this could suggest that the platform’s characteristics (ex., user interactions, content type) might contribute to mental health outcomes.
+
+
+#Initial Intuition for the plot in Plot 2:
+
+-Usage Impact: The graph might show whether higher daily social media usage is associated with higher average depression scores. If the line trends upwards, it would suggest that increased social media use correlates with more frequent feelings of depression.
+
+-Pattern Identification: Observing any distinct patterns or thresholds (e.g., after a certain amount of daily usage, depression scores significantly increase) could help in understanding how social media usage impacts mental health.
