@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Names of all group members" />
+<meta name="author" content="Arnav Bedi" />
 
 
 <title>Final Project Basic Outline</title>
@@ -1512,7 +1512,7 @@ window.initializeCodeFolding = function(show) {
     $(this).detach().appendTo(div);
 
     // add a show code button right above
-    var showCodeText = $('<span>' + (showThis ? 'Hide' : 'Code') + '</span>');
+    var showCodeText = $('<span>' + (showThis ? 'Hide' : 'Show') + '</span>');
     var showCodeButton = $('<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right"></button>');
     showCodeButton.append(showCodeText);
     showCodeButton
@@ -1538,7 +1538,7 @@ window.initializeCodeFolding = function(show) {
     //   * Change text
     //   * add a class for intermediate states styling
     div.on('hide.bs.collapse', function () {
-      showCodeText.text('Code');
+      showCodeText.text('Show');
       showCodeButton.addClass('btn-collapsing');
     });
     div.on('hidden.bs.collapse', function () {
@@ -1748,25 +1748,128 @@ display: none;
 
 
 <h1 class="title toc-ignore">Final Project Basic Outline</h1>
-<h4 class="author">Names of all group members</h4>
+<h4 class="author">Arnav Bedi</h4>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p>This is an outline for your final project. You can follow this
-outline, or you can modify it as you see fit. Do what works best for
-your project.</p>
 <div id="research-question" class="section level2">
 <h2>Research Question</h2>
-<p>State your general specific question and why it is interesting.</p>
+<p>My topic for this final project is going to be Analyzing the Effect
+of Social Media on Mental Health</p>
+<p>I want to explore the relationship between social media usage and
+mental health outcomes. I want to research this and make a project on
+this topic as it would be beneficial in the identification of the risk
+factors, promotion of positive usage of social media as well as these
+findings can be shared with mental health professionals, educators, and
+social media companies to help them understand how to better support
+users’ mental health. By analyzing data from social media platforms and
+mental health surveys, I can also identify correlations between screen
+time, content type, and mental health indicators such as anxiety,
+depression, and well-being.</p>
+<p>The 2 questions i would like to answer would be:</p>
+<ol style="list-style-type: decimal">
+<li><p>How average daily usage time per social media platform shows
+about which platform affects mental health the most by showing the
+dominant emotions that users experience during their usage of the
+platform.</p></li>
+<li><p>How the amount of time spent on social media can affect mental
+health with aspects such as depression and anxiety.</p></li>
+</ol>
 </div>
 <div id="data-processing" class="section level2">
 <h2>Data Processing</h2>
+<p>Installing neccesary libraries</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkIG5lY2Vzc2FyeSBwYWNrYWdlc1xubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KG1vc2FpYylcbmxpYnJhcnkoZXNxdWlzc2UpXG5cbmRldnRvb2xzOjppbnN0YWxsX2dpdGh1YihcIm1kYmVja21hbi9kY0RhdGFcIilcbmxpYnJhcnkoZGNEYXRhKVxuYGBgIn0= -->
+<pre class="r"><code># load necessary packages
+library(tidyverse)
+library(mosaic)
+library(esquisse)
+
+devtools::install_github(&quot;mdbeckman/dcData&quot;)
+library(dcData)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <div id="data-intake" class="section level4">
 <h4>Data Intake</h4>
-<p>Include R code and written explanation to import your
-<strong>TWO</strong> data sets.</p>
+<p>These 2 data sets about Social media usage and Mental Health are
+taken from kaggle.com. The data sets were downloaded from kaggle.com and
+then imported through the read function.</p>
+<p>Social Media data set:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5zb2NpYWxfbWVkaWEgPC0gcmVhZC5jc3YoXCJDOi9Vc2Vycy9Bcm5hdi9Eb3dubG9hZHMvdmFsLmNzdlwiKVxuaGVhZChzb2NpYWxfbWVkaWEpICMgRGlzcGxheWluZyB0aGUgZmlyc3QgZmV3IHJvd3Mgb2YgdGhlIGRhdGEgc2V0XG5gYGAifQ== -->
+<pre class="r"><code>
+social_media &lt;- read.csv(&quot;C:/Users/Arnav/Downloads/val.csv&quot;)
+head(social_media) # Displaying the first few rows of the data set</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MTAsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsiZGYgWzYgw5cgMTBdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQnAxVTMyL2FNQkEydjlJUmlhMWExMG5kSDdBM29vV1V3bXMxeGxadG5WQXBVdDhpazF5cFJXSkhzZW5LMi83eWRoZHFoMkFWVlJyU3lkOTlkNzQ3MzEyNEd0MEU3bzFMQ0dtUVpyTkdHaTJFcERXN0huZUhoRFRycU5SSWs3U0w4d0dkamhBVTNvY29qamJVL1M4YU5ZYURnWUc5b01LZUdSaHNZY0ZhZ1FLL1JEMkRlbWNsR3I2SWRtTTBMMmtDR2p0alNMZWErMXZ3N3B4eG1xLy9rOW5OMUw3Z1V0RkZUdE45eEpzeGpXQXV4TkxvVTA2ejZJNnFWL1hkVEExL1VQYlM3L2ZOMjAvN0plbnZnNFIwTm9Gd3B2cXNiV2E5RldPZm9Qd3Npa0Q1WEJGai80QnlValFZNVgxRmRnZFlGaGVVSS9LM294eThpS3kyL3FCWnhqaEl1WTg0bU5LNHFwN3pCd1pxL1lxNnU4d3RUbE9RT3JWcmZHY1M4dkJpWkJwNHZpZzM2VHZ3R0hJenAwbEMxYTNJelp3L2pTaEwxdUZNMGdXRTF5d0Z6MHNaWHltUW52Ym9USVJVTXB4ZytCRTFwWDM4eFpZZ3d5dUlnTjFEYkZsUHZvbzBCYTcyT2h4ZllnOHdvd3luNkdZWkQwY0NTNkRJZjB1RllvSmI3Mi9uNG85bmVsQ011UDZYYkg2TzNhZ29vZEkweXBCdVRCWDFibkhUQWJWSDY4cUJ5SXFNZUtsK3BKZW5lcm1XVzhTN0ZTOHFpYnZSM1lvdnU2ZVd1Wkh4QlhuKzE2bHA2ZWpUcVdEM3VZcjZrN1ZQRHZBRmJvOTVUa0xua0pqSU1keHIrQmI3c1dtSGwrV01tdy9TUlZaNlNpaHFycmlSU0F5emVUbDUvQWNObzNlSFF3VUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["User_ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Age"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Platform"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Daily_Usage_Time..minutes."],"name":[5],"type":["chr"],"align":["left"]},{"label":["Posts_Per_Day"],"name":[6],"type":["int"],"align":["right"]},{"label":["Likes_Received_Per_Day"],"name":[7],"type":["int"],"align":["right"]},{"label":["Comments_Received_Per_Day"],"name":[8],"type":["int"],"align":["right"]},{"label":["Messages_Sent_Per_Day"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Dominant_Emotion"],"name":[10],"type":["chr"],"align":["left"]}],"data":[{"1":"10","2":"31","3":"Male","4":"Instagram","5":"170","6":"5","7":"80","8":"20","9":"35","10":"Happiness","_rn_":"1"},{"1":"877","2":"32","3":"Female","4":"Instagram","5":"155","6":"6","7":"75","8":"25","9":"38","10":"Happiness","_rn_":"2"},{"1":"230","2":"26","3":"Non-binary","4":"Facebook","5":"45","6":"1","7":"8","8":"4","9":"12","10":"Sadness","_rn_":"3"},{"1":"876","2":"28","3":"Non-binary","4":"Snapchat","5":"115","6":"3","7":"38","8":"18","9":"27","10":"Anxiety","_rn_":"4"},{"1":"376","2":"28","3":"Non-binary","4":"Snapchat","5":"115","6":"3","7":"38","8":"18","9":"27","10":"Anxiety","_rn_":"5"},{"1":"876","2":"28","3":"Non-binary","4":"Snapchat","5":"115","6":"3","7":"38","8":"18","9":"27","10":"Anxiety","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[10]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jb2xuYW1lcyhzb2NpYWxfbWVkaWEpICMgRGlzcGxheWluZyBhbGwgdGhlIGNvbHVtbiBuYW1lcyBpbiB0aGUgZGF0YSBzZXQgXG5gYGAifQ== -->
+<pre class="r"><code>
+colnames(social_media) # Displaying all the column names in the data set </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIlVzZXJfSURcIiAgICAgICAgICAgICAgICAgICAgXCJBZ2VcIiAgICAgICAgICAgICAgICAgICAgICAgIFwiR2VuZGVyXCIgICAgICAgICAgICAgICAgICAgIFxuIFs0XSBcIlBsYXRmb3JtXCIgICAgICAgICAgICAgICAgICAgXCJEYWlseV9Vc2FnZV9UaW1lLi5taW51dGVzLlwiIFwiUG9zdHNfUGVyX0RheVwiICAgICAgICAgICAgIFxuIFs3XSBcIkxpa2VzX1JlY2VpdmVkX1Blcl9EYXlcIiAgICAgXCJDb21tZW50c19SZWNlaXZlZF9QZXJfRGF5XCIgIFwiTWVzc2FnZXNfU2VudF9QZXJfRGF5XCIgICAgIFxuWzEwXSBcIkRvbWluYW50X0Vtb3Rpb25cIiAgICAgICAgICBcbiJ9 -->
+<pre><code> [1] &quot;User_ID&quot;                    &quot;Age&quot;                        &quot;Gender&quot;                    
+ [4] &quot;Platform&quot;                   &quot;Daily_Usage_Time..minutes.&quot; &quot;Posts_Per_Day&quot;             
+ [7] &quot;Likes_Received_Per_Day&quot;     &quot;Comments_Received_Per_Day&quot;  &quot;Messages_Sent_Per_Day&quot;     
+[10] &quot;Dominant_Emotion&quot;          </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Mental Health data set:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5tZW50YWxfaGVhbHRoIDwtIHJlYWQuY3N2KFwiQzovVXNlcnMvQXJuYXYvRG93bmxvYWRzL3NtbWguY3N2XCIpXG5oZWFkKG1lbnRhbF9oZWFsdGgpICMgRGlzcGxheWluZyB0aGUgZmlyc3QgZmV3IHJvd3Mgb2YgdGhlIGRhdGEgc2V0XG5gYGAifQ== -->
+<pre class="r"><code>
+mental_health &lt;- read.csv(&quot;C:/Users/Arnav/Downloads/smmh.csv&quot;)
+head(mental_health) # Displaying the first few rows of the data set</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MjEsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsiZGYgWzYgw5cgMjFdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQnMxV3pXL2JOaFJYWWp0RERMUmJGd1M5OUtEYkxna2IrU094ZmVxR0lHdUJGZDJTRkZXeEV5MDlXWVFsVWlPcHVONXBmM20zUjFtMEpVM0prSDBBRTBDSWVwKy85OEZIWFYvNnc3N2ZkeHluNDNTN2UwNm5oMXVuOS83MjZuVGlPTjE5L05oenVzNmhlWDlDb1NQY0hPUDZDdGRCeWZoNjlOS2J2QnljRFFhdU41MTVrOW5vb3Awem5RMG1yWnpCZURhZXRuT21zOUd3bFRNY3pvYmVmWndSZ25lZUdveXZ4azd4L09YNzNMRlBOYmJ1VzVwQXVUKzRndlNmZk5VdFAzdkRYZXBLU0tobWdxdVlaVmI4aHZIRlR2blJYNDNpdk9mc0RxUmlldTNlNkR3RXJ2OEhuRHJHL2s3aVA2VFVmWFkrZ3ZxNzI3cWw4eXNhd0Z5STVZbDd1MkphZ3p4eDMzQ2w2VUxTOU1UOUtQTGJmQTRuN2lWVGdaRGhpWHNOWWNqMHY2TDl6VTY3VGVsSHh0RWdLQ3QrMUNKZXNsNDhaS21VK2ZheFdMZitVWUV0YjhXeWticmo3MEN2QUxnN2NDa1AzYUViaTF6YVZEOTdLeVM0T3FiY0hkY1lXNjFob1RWNnBGYWJyM3VZanZPa1FJc1QwY3lDWWtyVzM1YmZLZGQrdVhvTnZxWHZsYXRiZmpmdDd6ZDhWUFY3amRWdDBiZDZ2WHYwcTd3bS9yM0d1NG5mWXJjWU93My9WUXhOL0paV2phOFp2MTNXVjdkeEFmVTRUYmVuNzdna0h0NHlKR3FhMnZGNTdIdUVmSWlwSmt5Uk5aYVIwQVVRT3cvOEFTSGZBdzlCbHBUbi9wQ1E2OG9VSmplYTZuemJHUDZJa0hkQmtHZUZRSjE1NFk5TFYzcWRBUkVSRVhKQk9mdDFZNHhRQ1FZQm9WSEVFa1kxaEFTUFRXekJ2UERQQ2JrVWhVaXVnQ2dSTUpxUUZFSkdyY3pJdnloZDFMZ1o0bzJFVEJVSk4vcUJTRlBCazNWaHlCNVhmN0xMaEk2QlVCeUZKaGthVTFab3FReFRRVENzbW5GQXNUVUo2ZG9hK3NtZkV2SmFyREJDRGR5NmpCanFtZ1FyU0NMMGk3Y1B1YW5hTWJHS1hCTnEvQVFzWWdISmNwbUpIY0lQdm5mV1lua0Jtb1JNYVVrRGs3UDV1bUUzUnRFaXI1amZlYTRRcXpET2xVaEJ4MlpYbXIveVBXK2I0UWdnSVdZV0phQVVZVkZCakRFbG5HaVR0YkR1aEhGaVBMRmtDM2JxZTlnODd3eGRCWGlmbTNwN1JBdUNUUkJqQ0VBVnd3SlVnTnY2bHdaZStkN3dJUU5wSHNSYm5ibkFpc2xOOUNzaEpRTkZ0bTNualhaaG1Tb3dreTlzc2lCUHRERVlDQjdnTlN1eDVVeDFpNlJzMVhQZkcvOFpSb21oVmdkc3FxekVzeWt5bWk1Z0VaVUhBYVl4eWhPU2djalFpSTZseUJkeDBXZW1COUZvV3ovUGZRK2Iva29raVZpWlNobnhUTUlkRTdraXYrUllIblBLQ2loaHBXNTBiaG9KaGRIeUJoVlQ1b1JocTNEczZRVHpqajFHbDVYaS8rQjdGeTI5bGVEMVplSlFBRXR5UnhNV2JnNTJKRVdLdnZCMFk0L2NoLzdVOXladEo4RkFEQUhqVUthUGhFVEdpbHVsbjMxditsRFpJd2tZT05lbWR3U1VNOHRlbktZUFEycjZDbHVLM1RGdCtpQks4a0RucHJpbGk5Zis0T3doRjNXMGVJbmpSRkNZYkR3UEN5ckQ0dkFrQUJscFROeERpY3AyNnBwUnZmK2JVendIemRFY0pGVFowV3lKZlV3dHhmQlFINzgrTjFTK0VGa3hKZEhvVVhrSlZKWDNaSVB3WmM0Tmt2QTBpSE8rUEIwMzJKMk1MNHpQeWozMXBId2ZWUGJIR3hUN3Z6djFQNUVENEF2RzdZOU9MNkZ6U0t6bEVPN0s3VlBNUjVFTzdGbTIvY0h0SXhVSHJORFVxdlFEa1ZoS0VibnorUS9yVnh5bmFRMEFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Timestamp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X1..What.is.your.age."],"name":[2],"type":["dbl"],"align":["right"]},{"label":["X2..Gender"],"name":[3],"type":["chr"],"align":["left"]},{"label":["X3..Relationship.Status"],"name":[4],"type":["chr"],"align":["left"]},{"label":["X4..Occupation.Status"],"name":[5],"type":["chr"],"align":["left"]},{"label":["X5..What.type.of.organizations.are.you.affiliated.with."],"name":[6],"type":["chr"],"align":["left"]},{"label":["X6..Do.you.use.social.media."],"name":[7],"type":["chr"],"align":["left"]},{"label":["X7..What.social.media.platforms.do.you.commonly.use."],"name":[8],"type":["chr"],"align":["left"]},{"label":["X8..What.is.the.average.time.you.spend.on.social.media.every.day."],"name":[9],"type":["chr"],"align":["left"]},{"label":["X9..How.often.do.you.find.yourself.using.Social.media.without.a.specific.purpose."],"name":[10],"type":["int"],"align":["right"]},{"label":["X10..How.often.do.you.get.distracted.by.Social.media.when.you.are.busy.doing.something."],"name":[11],"type":["int"],"align":["right"]},{"label":["X11..Do.you.feel.restless.if.you.haven.t.used.Social.media.in.a.while."],"name":[12],"type":["int"],"align":["right"]},{"label":["X12..On.a.scale.of.1.to.5..how.easily.distracted.are.you."],"name":[13],"type":["int"],"align":["right"]},{"label":["X13..On.a.scale.of.1.to.5..how.much.are.you.bothered.by.worries."],"name":[14],"type":["int"],"align":["right"]},{"label":["X14..Do.you.find.it.difficult.to.concentrate.on.things."],"name":[15],"type":["int"],"align":["right"]},{"label":["X15..On.a.scale.of.1.5..how.often.do.you.compare.yourself.to.other.successful.people.through.the.use.of.social.media."],"name":[16],"type":["int"],"align":["right"]},{"label":["X16..Following.the.previous.question..how.do.you.feel.about.these.comparisons..generally.speaking."],"name":[17],"type":["int"],"align":["right"]},{"label":["X17..How.often.do.you.look.to.seek.validation.from.features.of.social.media."],"name":[18],"type":["int"],"align":["right"]},{"label":["X18..How.often.do.you.feel.depressed.or.down."],"name":[19],"type":["int"],"align":["right"]},{"label":["X19..On.a.scale.of.1.to.5..how.frequently.does.your.interest.in.daily.activities.fluctuate."],"name":[20],"type":["int"],"align":["right"]},{"label":["X20..On.a.scale.of.1.to.5..how.often.do.you.face.issues.regarding.sleep."],"name":[21],"type":["int"],"align":["right"]}],"data":[{"1":"4/18/2022 19:18:47","2":"21","3":"Male","4":"In a relationship","5":"University Student","6":"University","7":"Yes","8":"Facebook, Twitter, Instagram, YouTube, Discord, Reddit","9":"Between 2 and 3 hours","10":"5","11":"3","12":"2","13":"5","14":"2","15":"5","16":"2","17":"3","18":"2","19":"5","20":"4","21":"5","_rn_":"1"},{"1":"4/18/2022 19:19:28","2":"21","3":"Female","4":"Single","5":"University Student","6":"University","7":"Yes","8":"Facebook, Twitter, Instagram, YouTube, Discord, Reddit","9":"More than 5 hours","10":"4","11":"3","12":"2","13":"4","14":"5","15":"4","16":"5","17":"1","18":"1","19":"5","20":"4","21":"5","_rn_":"2"},{"1":"4/18/2022 19:25:59","2":"21","3":"Female","4":"Single","5":"University Student","6":"University","7":"Yes","8":"Facebook, Instagram, YouTube, Pinterest","9":"Between 3 and 4 hours","10":"3","11":"2","12":"1","13":"2","14":"5","15":"4","16":"3","17":"3","18":"1","19":"4","20":"2","21":"5","_rn_":"3"},{"1":"4/18/2022 19:29:43","2":"21","3":"Female","4":"Single","5":"University Student","6":"University","7":"Yes","8":"Facebook, Instagram","9":"More than 5 hours","10":"4","11":"2","12":"1","13":"3","14":"5","15":"3","16":"5","17":"1","18":"2","19":"4","20":"3","21":"2","_rn_":"4"},{"1":"4/18/2022 19:33:31","2":"21","3":"Female","4":"Single","5":"University Student","6":"University","7":"Yes","8":"Facebook, Instagram, YouTube","9":"Between 2 and 3 hours","10":"3","11":"5","12":"4","13":"4","14":"5","15":"5","16":"3","17":"3","18":"3","19":"4","20":"4","21":"1","_rn_":"5"},{"1":"4/18/2022 19:33:48","2":"22","3":"Female","4":"Single","5":"University Student","6":"University","7":"Yes","8":"Facebook, Twitter, Instagram, YouTube, Discord, Pinterest, TikTok","9":"Between 2 and 3 hours","10":"4","11":"4","12":"2","13":"3","14":"4","15":"3","16":"4","17":"4","18":"3","19":"3","20":"2","21":"4","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[21]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jb2xuYW1lcyhtZW50YWxfaGVhbHRoKSAjIERpc3BsYXlpbmcgYWxsIHRoZSBjb2x1bW4gbmFtZXMgaW4gdGhlIGRhdGEgc2V0XG5gYGAifQ== -->
+<pre class="r"><code>
+colnames(mental_health) # Displaying all the column names in the data set</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIlRpbWVzdGFtcFwiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gWzJdIFwiWDEuLldoYXQuaXMueW91ci5hZ2UuXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBbM10gXCJYMi4uR2VuZGVyXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFs0XSBcIlgzLi5SZWxhdGlvbnNoaXAuU3RhdHVzXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gWzVdIFwiWDQuLk9jY3VwYXRpb24uU3RhdHVzXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBbNl0gXCJYNS4uV2hhdC50eXBlLm9mLm9yZ2FuaXphdGlvbnMuYXJlLnlvdS5hZmZpbGlhdGVkLndpdGguXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIFs3XSBcIlg2Li5Eby55b3UudXNlLnNvY2lhbC5tZWRpYS5cIiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gWzhdIFwiWDcuLldoYXQuc29jaWFsLm1lZGlhLnBsYXRmb3Jtcy5kby55b3UuY29tbW9ubHkudXNlLlwiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBbOV0gXCJYOC4uV2hhdC5pcy50aGUuYXZlcmFnZS50aW1lLnlvdS5zcGVuZC5vbi5zb2NpYWwubWVkaWEuZXZlcnkuZGF5LlwiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuWzEwXSBcIlg5Li5Ib3cub2Z0ZW4uZG8ueW91LmZpbmQueW91cnNlbGYudXNpbmcuU29jaWFsLm1lZGlhLndpdGhvdXQuYS5zcGVjaWZpYy5wdXJwb3NlLlwiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG5bMTFdIFwiWDEwLi5Ib3cub2Z0ZW4uZG8ueW91LmdldC5kaXN0cmFjdGVkLmJ5LlNvY2lhbC5tZWRpYS53aGVuLnlvdS5hcmUuYnVzeS5kb2luZy5zb21ldGhpbmcuXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcblsxMl0gXCJYMTEuLkRvLnlvdS5mZWVsLnJlc3RsZXNzLmlmLnlvdS5oYXZlbi50LnVzZWQuU29jaWFsLm1lZGlhLmluLmEud2hpbGUuXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuWzEzXSBcIlgxMi4uT24uYS5zY2FsZS5vZi4xLnRvLjUuLmhvdy5lYXNpbHkuZGlzdHJhY3RlZC5hcmUueW91LlwiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG5bMTRdIFwiWDEzLi5Pbi5hLnNjYWxlLm9mLjEudG8uNS4uaG93Lm11Y2guYXJlLnlvdS5ib3RoZXJlZC5ieS53b3JyaWVzLlwiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcblsxNV0gXCJYMTQuLkRvLnlvdS5maW5kLml0LmRpZmZpY3VsdC50by5jb25jZW50cmF0ZS5vbi50aGluZ3MuXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuWzE2XSBcIlgxNS4uT24uYS5zY2FsZS5vZi4xLjUuLmhvdy5vZnRlbi5kby55b3UuY29tcGFyZS55b3Vyc2VsZi50by5vdGhlci5zdWNjZXNzZnVsLnBlb3BsZS50aHJvdWdoLnRoZS51c2Uub2Yuc29jaWFsLm1lZGlhLlwiXG5bMTddIFwiWDE2Li5Gb2xsb3dpbmcudGhlLnByZXZpb3VzLnF1ZXN0aW9uLi5ob3cuZG8ueW91LmZlZWwuYWJvdXQudGhlc2UuY29tcGFyaXNvbnMuLmdlbmVyYWxseS5zcGVha2luZy5cIiAgICAgICAgICAgICAgICAgICBcblsxOF0gXCJYMTcuLkhvdy5vZnRlbi5kby55b3UubG9vay50by5zZWVrLnZhbGlkYXRpb24uZnJvbS5mZWF0dXJlcy5vZi5zb2NpYWwubWVkaWEuXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuWzE5XSBcIlgxOC4uSG93Lm9mdGVuLmRvLnlvdS5mZWVsLmRlcHJlc3NlZC5vci5kb3duLlwiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG5bMjBdIFwiWDE5Li5Pbi5hLnNjYWxlLm9mLjEudG8uNS4uaG93LmZyZXF1ZW50bHkuZG9lcy55b3VyLmludGVyZXN0LmluLmRhaWx5LmFjdGl2aXRpZXMuZmx1Y3R1YXRlLlwiICAgICAgICAgICAgICAgICAgICAgICAgICBcblsyMV0gXCJYMjAuLk9uLmEuc2NhbGUub2YuMS50by41Li5ob3cub2Z0ZW4uZG8ueW91LmZhY2UuaXNzdWVzLnJlZ2FyZGluZy5zbGVlcC5cIiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIn0= -->
+<pre><code> [1] &quot;Timestamp&quot;                                                                                                            
+ [2] &quot;X1..What.is.your.age.&quot;                                                                                                
+ [3] &quot;X2..Gender&quot;                                                                                                           
+ [4] &quot;X3..Relationship.Status&quot;                                                                                              
+ [5] &quot;X4..Occupation.Status&quot;                                                                                                
+ [6] &quot;X5..What.type.of.organizations.are.you.affiliated.with.&quot;                                                              
+ [7] &quot;X6..Do.you.use.social.media.&quot;                                                                                         
+ [8] &quot;X7..What.social.media.platforms.do.you.commonly.use.&quot;                                                                 
+ [9] &quot;X8..What.is.the.average.time.you.spend.on.social.media.every.day.&quot;                                                    
+[10] &quot;X9..How.often.do.you.find.yourself.using.Social.media.without.a.specific.purpose.&quot;                                    
+[11] &quot;X10..How.often.do.you.get.distracted.by.Social.media.when.you.are.busy.doing.something.&quot;                              
+[12] &quot;X11..Do.you.feel.restless.if.you.haven.t.used.Social.media.in.a.while.&quot;                                               
+[13] &quot;X12..On.a.scale.of.1.to.5..how.easily.distracted.are.you.&quot;                                                            
+[14] &quot;X13..On.a.scale.of.1.to.5..how.much.are.you.bothered.by.worries.&quot;                                                     
+[15] &quot;X14..Do.you.find.it.difficult.to.concentrate.on.things.&quot;                                                              
+[16] &quot;X15..On.a.scale.of.1.5..how.often.do.you.compare.yourself.to.other.successful.people.through.the.use.of.social.media.&quot;
+[17] &quot;X16..Following.the.previous.question..how.do.you.feel.about.these.comparisons..generally.speaking.&quot;                   
+[18] &quot;X17..How.often.do.you.look.to.seek.validation.from.features.of.social.media.&quot;                                         
+[19] &quot;X18..How.often.do.you.feel.depressed.or.down.&quot;                                                                        
+[20] &quot;X19..On.a.scale.of.1.to.5..how.frequently.does.your.interest.in.daily.activities.fluctuate.&quot;                          
+[21] &quot;X20..On.a.scale.of.1.to.5..how.often.do.you.face.issues.regarding.sleep.&quot;                                             </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="data-wrangling" class="section level4">
 <h4>Data Wrangling</h4>
@@ -1788,7 +1891,7 @@ you created.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRmluYWwgUHJvamVjdCBCYXNpYyBPdXRsaW5lIgphdXRob3I6ICJOYW1lcyBvZiBhbGwgZ3JvdXAgbWVtYmVycyIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKVGhpcyBpcyBhbiBvdXRsaW5lIGZvciB5b3VyIGZpbmFsIHByb2plY3QuIFlvdSBjYW4gZm9sbG93IHRoaXMgb3V0bGluZSwgb3IgeW91IGNhbiBtb2RpZnkgaXQgYXMgeW91IHNlZSBmaXQuIERvIHdoYXQgd29ya3MgYmVzdCBmb3IgeW91ciBwcm9qZWN0LiAKCiMjIFJlc2VhcmNoIFF1ZXN0aW9uIAoKU3RhdGUgeW91ciBnZW5lcmFsIHNwZWNpZmljIHF1ZXN0aW9uIGFuZCB3aHkgaXQgaXMgaW50ZXJlc3RpbmcuIAoKCgojIyBEYXRhIFByb2Nlc3NpbmcgCgojIyMjIERhdGEgSW50YWtlIAoKSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gdG8gaW1wb3J0IHlvdXIgKipUV08qKiBkYXRhIHNldHMuCgojIyMjIERhdGEgV3JhbmdsaW5nIAoKSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gZm9yIHdhbmdsaW5nIHlvdXIgZGF0YSAoeW91IGNhbiBtYWtlIG11bHRpcGxlIHdyYW5nbGVkIGRhdGEgc2V0cykuIAoKCgoKIyMgRGF0YSBWaXN1YWxpemF0aW9uCgpJbmNsdWRlIFIgY29kZSBhbmQgd3JpdHRlbiBleHBsYW5hdGlvbiBmb3IgeW91ciBkYXRhIHZpc3VhbGl6YXRpb24ocykgd2l0aCBhdCBsZWFzdCAzIHZhcmlhYmxlcy4gWW91IG11c3QgaGF2ZSAqKmF0IGxlYXN0Kiogb25lIGdyYXBoLiBZb3UgbWF5IGhhdmUgbW9yZSB0aGFuIG9uZSAoSSB3b3VsZCBlbmNvdXJhZ2UgeW91IHRvIGhhdmUgbW9yZSB0aGFuIG9uZSkuIAoKCgoKIyMgQ29uY2x1c2lvbgoKQW5zd2VyIHlvdXIgcmVzZWFyY2ggcXVlc3Rpb24gdXNpbmcgdGhlIGRhdGEgc2V0cyBhbmQgdmlzdWFsaXphdGlvbnMgeW91IGNyZWF0ZWQuIA==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkZpbmFsIFByb2plY3QgQmFzaWMgT3V0bGluZSINCmF1dGhvcjogIkFybmF2IEJlZGkiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoNCiMjIFJlc2VhcmNoIFF1ZXN0aW9uIA0KDQpNeSB0b3BpYyBmb3IgdGhpcyBmaW5hbCBwcm9qZWN0IGlzIGdvaW5nIHRvIGJlIEFuYWx5emluZyB0aGUgRWZmZWN0IG9mIFNvY2lhbCBNZWRpYSBvbiBNZW50YWwgSGVhbHRoDQoNCkkgd2FudCB0byBleHBsb3JlIHRoZSByZWxhdGlvbnNoaXAgYmV0d2VlbiBzb2NpYWwgbWVkaWEgdXNhZ2UgYW5kIG1lbnRhbCBoZWFsdGggb3V0Y29tZXMuIEkgd2FudCB0byByZXNlYXJjaCB0aGlzIGFuZCBtYWtlIGEgcHJvamVjdCBvbiB0aGlzIHRvcGljIGFzIGl0IHdvdWxkIGJlIGJlbmVmaWNpYWwgaW4gdGhlIGlkZW50aWZpY2F0aW9uIG9mIHRoZSByaXNrIGZhY3RvcnMsIHByb21vdGlvbiBvZiBwb3NpdGl2ZSB1c2FnZSBvZiBzb2NpYWwgbWVkaWEgYXMgd2VsbCBhcyB0aGVzZSBmaW5kaW5ncyBjYW4gYmUgc2hhcmVkIHdpdGggbWVudGFsIGhlYWx0aCBwcm9mZXNzaW9uYWxzLCBlZHVjYXRvcnMsIGFuZCBzb2NpYWwgbWVkaWEgY29tcGFuaWVzIHRvIGhlbHAgdGhlbSB1bmRlcnN0YW5kIGhvdyB0byBiZXR0ZXIgc3VwcG9ydCB1c2Vyc+KAmSBtZW50YWwgaGVhbHRoLiBCeSBhbmFseXppbmcgZGF0YSBmcm9tIHNvY2lhbCBtZWRpYSBwbGF0Zm9ybXMgYW5kIG1lbnRhbCBoZWFsdGggc3VydmV5cywgSSBjYW4gYWxzbyBpZGVudGlmeSBjb3JyZWxhdGlvbnMgYmV0d2VlbiBzY3JlZW4gdGltZSwgY29udGVudCB0eXBlLCBhbmQgbWVudGFsIGhlYWx0aCBpbmRpY2F0b3JzIHN1Y2ggYXMgYW54aWV0eSwgZGVwcmVzc2lvbiwgYW5kIHdlbGwtYmVpbmcuIA0KDQpUaGUgMiBxdWVzdGlvbnMgaSB3b3VsZCBsaWtlIHRvIGFuc3dlciB3b3VsZCBiZTogDQoNCjEpIEhvdyBhdmVyYWdlIGRhaWx5IHVzYWdlIHRpbWUgcGVyIHNvY2lhbCBtZWRpYSBwbGF0Zm9ybSBzaG93cyBhYm91dCB3aGljaCBwbGF0Zm9ybSBhZmZlY3RzIG1lbnRhbCBoZWFsdGggdGhlIG1vc3QgYnkgc2hvd2luZyB0aGUgZG9taW5hbnQgZW1vdGlvbnMgdGhhdCB1c2VycyBleHBlcmllbmNlIGR1cmluZyB0aGVpciB1c2FnZSBvZiB0aGUgcGxhdGZvcm0uDQoNCjIpIEhvdyB0aGUgYW1vdW50IG9mIHRpbWUgc3BlbnQgb24gc29jaWFsIG1lZGlhIGNhbiBhZmZlY3QgbWVudGFsIGhlYWx0aCB3aXRoIGFzcGVjdHMgc3VjaCBhcyBkZXByZXNzaW9uIGFuZCBhbnhpZXR5Lg0KDQojIyBEYXRhIFByb2Nlc3NpbmcgDQoNCkluc3RhbGxpbmcgbmVjY2VzYXJ5IGxpYnJhcmllcyANCg0KYGBge3J9DQojIGxvYWQgbmVjZXNzYXJ5IHBhY2thZ2VzDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkobW9zYWljKQ0KbGlicmFyeShlc3F1aXNzZSkNCg0KZGV2dG9vbHM6Omluc3RhbGxfZ2l0aHViKCJtZGJlY2ttYW4vZGNEYXRhIikNCmxpYnJhcnkoZGNEYXRhKQ0KYGBgDQoNCg0KIyMjIyBEYXRhIEludGFrZSANCg0KVGhlc2UgMiBkYXRhIHNldHMgYWJvdXQgU29jaWFsIG1lZGlhIHVzYWdlIGFuZCBNZW50YWwgSGVhbHRoIGFyZSB0YWtlbiBmcm9tIGthZ2dsZS5jb20uIFRoZSBkYXRhIHNldHMgd2VyZSBkb3dubG9hZGVkIGZyb20ga2FnZ2xlLmNvbSBhbmQgdGhlbiBpbXBvcnRlZCB0aHJvdWdoIHRoZSByZWFkIGZ1bmN0aW9uLg0KDQpTb2NpYWwgTWVkaWEgZGF0YSBzZXQ6DQpgYGB7cn0NCg0Kc29jaWFsX21lZGlhIDwtIHJlYWQuY3N2KCJDOi9Vc2Vycy9Bcm5hdi9Eb3dubG9hZHMvdmFsLmNzdiIpDQpoZWFkKHNvY2lhbF9tZWRpYSkgIyBEaXNwbGF5aW5nIHRoZSBmaXJzdCBmZXcgcm93cyBvZiB0aGUgZGF0YSBzZXQNCg0KY29sbmFtZXMoc29jaWFsX21lZGlhKSAjIERpc3BsYXlpbmcgYWxsIHRoZSBjb2x1bW4gbmFtZXMgaW4gdGhlIGRhdGEgc2V0IA0KDQpgYGANCk1lbnRhbCBIZWFsdGggZGF0YSBzZXQ6DQpgYGB7cn0NCg0KbWVudGFsX2hlYWx0aCA8LSByZWFkLmNzdigiQzovVXNlcnMvQXJuYXYvRG93bmxvYWRzL3NtbWguY3N2IikNCmhlYWQobWVudGFsX2hlYWx0aCkgIyBEaXNwbGF5aW5nIHRoZSBmaXJzdCBmZXcgcm93cyBvZiB0aGUgZGF0YSBzZXQNCg0KY29sbmFtZXMobWVudGFsX2hlYWx0aCkgIyBEaXNwbGF5aW5nIGFsbCB0aGUgY29sdW1uIG5hbWVzIGluIHRoZSBkYXRhIHNldA0KDQpgYGANCg0KIyMjIyBEYXRhIFdyYW5nbGluZyANCg0KSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gZm9yIHdhbmdsaW5nIHlvdXIgZGF0YSAoeW91IGNhbiBtYWtlIG11bHRpcGxlIHdyYW5nbGVkIGRhdGEgc2V0cykuIA0KDQoNCg0KDQojIyBEYXRhIFZpc3VhbGl6YXRpb24NCg0KSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gZm9yIHlvdXIgZGF0YSB2aXN1YWxpemF0aW9uKHMpIHdpdGggYXQgbGVhc3QgMyB2YXJpYWJsZXMuIFlvdSBtdXN0IGhhdmUgKiphdCBsZWFzdCoqIG9uZSBncmFwaC4gWW91IG1heSBoYXZlIG1vcmUgdGhhbiBvbmUgKEkgd291bGQgZW5jb3VyYWdlIHlvdSB0byBoYXZlIG1vcmUgdGhhbiBvbmUpLiANCg0KDQoNCg0KIyMgQ29uY2x1c2lvbg0KDQpBbnN3ZXIgeW91ciByZXNlYXJjaCBxdWVzdGlvbiB1c2luZyB0aGUgZGF0YSBzZXRzIGFuZCB2aXN1YWxpemF0aW9ucyB5b3UgY3JlYXRlZC4gDQo=</div>
 
 
 

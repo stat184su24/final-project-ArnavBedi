@@ -1,22 +1,59 @@
 ---
 title: "Final Project Basic Outline"
-author: "Student name"
+author: "Arnav Bedi"
 output: html_notebook
 ---
 
-This is an outline for your final project. You can follow this outline, or you can modify it as you see fit. Do what works best for your project. 
 
 ## Research Question 
 
-State your general specific question and why it is interesting. 
+My topic for this final project is going to be Analyzing the Effect of Social Media on Mental Health
 
+I want to explore the relationship between social media usage and mental health outcomes. I want to research this and make a project on this topic as it would be beneficial in the identification of the risk factors, promotion of positive usage of social media as well as these findings can be shared with mental health professionals, educators, and social media companies to help them understand how to better support users’ mental health. By analyzing data from social media platforms and mental health surveys, I can also identify correlations between screen time, content type, and mental health indicators such as anxiety, depression, and well-being. 
 
+The 2 questions i would like to answer would be: 
+
+1) How average daily usage time per social media platform shows about which platform affects mental health the most by showing the dominant emotions that users experience during their usage of the platform.
+
+2) How the amount of time spent on social media can affect mental health with aspects such as depression and anxiety.
 
 ## Data Processing 
 
+Installing neccesary libraries 
+
+```{r}
+# load necessary packages
+library(tidyverse)
+library(mosaic)
+library(esquisse)
+
+devtools::install_github("mdbeckman/dcData")
+library(dcData)
+```
+
+
 #### Data Intake 
 
-Include R code and a written explanation to import your **TWO** data sets.
+These 2 data sets about Social media usage and Mental Health are taken from kaggle.com. The data sets were downloaded from kaggle.com and then imported through the read function.
+
+Social Media data set:
+```{r}
+
+social_media <- read.csv("C:/Users/Arnav/Downloads/val.csv")
+head(social_media) # Displaying the first few rows of the data set
+
+colnames(social_media) # Displaying all the column names in the data set 
+
+```
+Mental Health data set:
+```{r}
+
+mental_health <- read.csv("C:/Users/Arnav/Downloads/smmh.csv")
+head(mental_health) # Displaying the first few rows of the data set
+
+colnames(mental_health) # Displaying all the column names in the data set
+
+```
 
 #### Data Wrangling 
 
