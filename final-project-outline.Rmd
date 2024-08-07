@@ -57,18 +57,169 @@ colnames(mental_health) # Displaying all the column names in the data set
 
 #### Data Wrangling 
 
-Include R code and written explanation for wangling your data (you can make multiple wrangled data sets). 
+
+```{r}
+# Inspect the structure of the datasets
+str(social_media)
+str(mental_health)
+
+# Checking for missing values
+summary(social_media)
+summary(mental_health)
+
+# Ensuring that Daily_Usage_Time..minutes. column is numeric
+social_media$Daily_Usage_Time..minutes. <- as.numeric(as.character(social_media$Daily_Usage_Time..minutes.))
+
+# Removing rows where platform is "Female" or "55"
+social_media <- social_media %>%
+  filter(Platform != "Female", Platform != "55")
+
+# Removing rows with non-numeric values in daily_usage_time_minutes
+social_media <- social_media %>%
+  filter(!is.na(as.numeric(Daily_Usage_Time..minutes.)), !is.na(Platform)) %>%
+  mutate(Daily_Usage_Time..minutes. = as.numeric(Daily_Usage_Time..minutes.))
+
+# Checking for conversion issues
+summary(social_media$Daily_Usage_Time..minutes.)
+
+# Aggregating social media usage per day
+social_media_summary <- social_media %>%
+  group_by(User_ID) %>%
+  summarise(total_hours_spent = sum(Daily_Usage_Time..minutes., na.rm = TRUE) / 60) # Converting minutes to hours
+
+# Aggregating average daily usage time per platform
+platform_summary <- social_media %>%
+  group_by(Platform) %>%
+  summarise(avg_daily_usage_time = mean(Daily_Usage_Time..minutes., na.rm = TRUE) / 60)
+
+# Aggregating mental health scores per day
+mental_health_summary <- mental_health %>%
+  group_by(Timestamp) %>%
+  summarise(avg_depression_score = mean(X18..How.often.do.you.feel.depressed.or.down., na.rm = TRUE),
+            avg_anxiety_score = mean(X13..On.a.scale.of.1.to.5..how.much.are.you.bothered.by.worries., na.rm = TRUE),
+            daily_social_media_time = X8..What.is.the.average.time.you.spend.on.social.media.every.day.,)
+
+# Aggregating average daily usage time per dominant emotion
+emotion_summary <- social_media %>%
+  group_by(Dominant_Emotion) %>%
+  summarise(avg_daily_usage_time = mean(Daily_Usage_Time..minutes., na.rm = TRUE) / 60)
 
 
+```
+
+str() function: This function is used to display the structure of the data frames social_media and mental_health. It provides information about the types of columns (e.g., integer, character, numeric, etc.) and a preview of the data.
+
+summary() function: This function provides a summary of each column in the data frames, including statistical measures like mean, median, min, max, and also counts of missing values (NAs) which is what I am mainly using it for in this case.
+
+Some potential reasons for missing values:
+
+-User Input Errors: Users might have skipped questions or provided invalid responses.
+-Data Entry Issues: Errors during data entry or collection could result in missing or incorrect values.
+-Platform Specific Anomalies: Certain platforms might have features or interactions that lead to different patterns of data completeness.
+
+social_media$Daily_Usage_Time..minutes. <- as.numeric(as.character(social_media$Daily_Usage_Time..minutes.)) : This line converts the Daily_Usage_Time..minutes. column from a character type to a numeric type. First, it converts the column to a character (to handle any factors or mixed types), and then it converts the character data to numeric. This is necessary to perform numerical operations, like calculating means and sums for this project.
+
+filter(): This function removes rows from the social_media data frame where the Platform column is either "Female" or "55". As these values  are likely errors or wrong entries in the Platform column. Removing them cleans the data and ensures that subsequent analyses on platforms are accurate.
+
+Then I aggregate social media usage per day, average daily usage time per platform, mental health scores per day, mental health scores per day, average daily usage time per dominant emotion as it reduces the number of rows, making it easier to analyze patterns and trends on a per-user basis rather than looking at each individual entry. I then convert them first to smaller and easier to understand names (eg. avg_depression_score, etc,) using the summarise function which are basically taking the mean/sum values of those columns and grouping them by different aspects like Timestamp, UserID, etc. to make it easier to compute for Data Visualisation, etc.
 
 
 ## Data Visualization
 
-Include R code and written explanation for your data visualization(s) with at least 3 variables. You must have **at least** one graph. You may have more than one (I would encourage you to have more than one). 
+#### Plot 1
+
+ Plot for Average Daily Usage Time per Platform
+
+```{r}
+
+ggplot(platform_summary, aes(x = Platform, y = avg_daily_usage_time, fill = Platform)) +
+  geom_bar(stat = 'identity') +
+  labs(title = "Average Daily Usage Time per Platform (hours)",
+       x = "Platform",
+       y = "Average Daily Usage Time") +
+  theme_minimal()
+``` 
+
+This bar chart shows the average daily usage time on different social media platforms. Each bar represents a platform, and the height of the bar indicates the average daily usage time in minutes.
+This shows that the most users spend most of their time on Instagram followed by Snapchat and Whatsapp.
 
 
+Plot average daily usage time per dominant emotion:
 
+```{r}
+
+ggplot(emotion_summary, aes(x = Dominant_Emotion, y = avg_daily_usage_time, fill = Dominant_Emotion)) +
+  geom_bar(stat = 'identity') +
+  labs(title = "Average Daily Usage Time per Dominant Emotion (hours) ",
+       x = "Dominant Emotion",
+       y = "Average Daily Usage Time") +
+  theme_minimal()
+
+```
+From this plot we can see that the dominant emotions the users feel are Aggression and Happiness followed by Anxiety and Anger as well as a variety of other emotions. From the first graph in this plot (Average Daily Usage Time per Platform (hours)), we can conclude that the above mentioned emotions are most dominant in users who use Instagram, Snapchat, Facebook, etc. which shows about the mental changes these platforms can bring about in users through their platform which may be connected to the type of content they have in the app, the UI, the type of people that use those platforms, etc. We can also observe that thew people with Agression and Happiness also have the highest usage times. 
+
+#### Plot 2
+
+Plots for Relationship between Social Media Usage and Mental Health Indicators
+
+```{r}
+
+ggplot(mental_health_summary, aes(x = as.factor(daily_social_media_time), y = avg_depression_score)) +
+  geom_bar(stat = 'identity', fill = "blue", alpha = 0.7) +
+  labs(
+    title = "Average Depression Score by Daily Social Media Usage",
+    x = "Daily Social Media Usage (hours)",
+    y = "Average Depression Score"
+  ) +
+  theme_minimal() +
+  scale_x_discrete(breaks = as.factor(mental_health_summary$daily_social_media_time)) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10),
+    axis.text.y = element_text(size = 12),
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    plot.title = element_text(size = 16, hjust = 0.5)
+  )
+
+```
+The bar graph illustrates the relationship between daily social media usage and the average depression score reported by participants. The x-axis represents the daily time spent on social media, measured in hours, while the y-axis shows the average score for feeling depressed. We can see that the people who spend more than 5 hours a day on social media have the highest depression score by a significant amount.
+
+```{r}
+ggplot(mental_health_summary, aes(x = as.factor(daily_social_media_time), y = avg_anxiety_score)) +
+  geom_bar(stat = 'identity', fill = "blue", alpha = 0.7) +
+  labs(
+    title = "Average Anxiety Score by Daily Social Media Usage",
+    x = "Daily Social Media Usage (hours)",
+    y = "Average Depression Score"
+  ) +
+  theme_minimal() +
+  scale_x_discrete(breaks = as.factor(mental_health_summary$daily_social_media_time)) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10),
+    axis.text.y = element_text(size = 12),
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    plot.title = element_text(size = 16, hjust = 0.5)
+  )
+
+
+```
+The bar graph illustrates the relationship between daily social media usage and the average anxiety score reported by participants. The x-axis represents the daily time spent on social media, measured in hours, while the y-axis shows the average score for feeling anxious. We can once again see that the people who spend more than 5 hours a day on social media have the highest anxiety score by a significant amount.
+
+This leads to an overall conclusion that the users who spend more time on social media which is more than 5 hours a day are reported to experience significant impact on their mental health showing high rates of depression and anxiety.
 
 ## Conclusion
 
-Answer your research question using the data sets and visualizations you created. 
+### Conclusion for the plots in Plot 1:
+
+-Platform Comparison: Some platforms show higher average depression scores than others like Instagram and Snapchat. Users of certain platforms report higher feelings of emotions such as depression, anger, happiness, etc. due to different usage patterns or social dynamics.
+
+-Social Media Influence: One of the conclusions we can come to by looking at the graph is that the people with aggression and happiness as dominant emotions have higher daily usage times. The patterns suggest that a particular platform (for example Instagram as it is the highest reported used social media platform) shows about the mental changes these platforms can bring about in users through their platform which may be connected to the type of content on the platoform, the UI, the type of people that use those platforms, etc.
+
+
+### Conclusion for the plots in Plot 2:
+
+-Usage Impact: The graph shows whether higher daily social media usage is associated with higher average depression and anxiety scores.
+
+-Pattern Identification:  Looking at the how people who spend more than 5 hours a day on social media, it shows that increased social media use correlates with more frequent feelings of depression and anxiety. 
+
