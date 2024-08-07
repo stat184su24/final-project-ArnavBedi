@@ -22,11 +22,12 @@ The 2 questions i would like to answer would be:
 Installing neccesary libraries 
 
 ```{r}
-# load necessary packages
+# Loading necessary packages
 library(tidyverse)
 library(mosaic)
 library(esquisse)
 
+# Installing the 'dcData' package from GitHub repository 'mdbeckman/dcData'
 devtools::install_github("mdbeckman/dcData")
 library(dcData)
 ```
@@ -113,9 +114,9 @@ summary() function: This function provides a summary of each column in the data 
 
 Some potential reasons for missing values:
 
--User Input Errors: Users might have skipped questions or provided invalid responses.
--Data Entry Issues: Errors during data entry or collection could result in missing or incorrect values.
--Platform Specific Anomalies: Certain platforms might have features or interactions that lead to different patterns of data completeness.
+- User Input Errors: Users might have skipped questions or provided invalid responses.
+- Data Entry Issues: Errors during data entry or collection could result in missing or incorrect values.
+- Platform Specific Anomalies: Certain platforms might have features or interactions that lead to different patterns of data completeness.
 
 social_media$Daily_Usage_Time..minutes. <- as.numeric(as.character(social_media$Daily_Usage_Time..minutes.)) : This line converts the Daily_Usage_Time..minutes. column from a character type to a numeric type. First, it converts the column to a character (to handle any factors or mixed types), and then it converts the character data to numeric. This is necessary to perform numerical operations, like calculating means and sums for this project.
 
@@ -131,6 +132,7 @@ Then I aggregate social media usage per day, average daily usage time per platfo
  Plot for Average Daily Usage Time per Platform
 
 ```{r}
+# Using ggplot2 to plot this and all the other graphs in this project
 
 ggplot(platform_summary, aes(x = Platform, y = avg_daily_usage_time, fill = Platform)) +
   geom_bar(stat = 'identity') +
@@ -186,7 +188,7 @@ The bar graph illustrates the relationship between daily social media usage and 
 
 ```{r}
 ggplot(mental_health_summary, aes(x = as.factor(daily_social_media_time), y = avg_anxiety_score)) +
-  geom_bar(stat = 'identity', fill = "blue", alpha = 0.7) +
+  geom_bar(stat = 'identity', fill = "red", alpha = 0.7) +
   labs(
     title = "Average Anxiety Score by Daily Social Media Usage",
     x = "Daily Social Media Usage (hours)",
@@ -212,14 +214,15 @@ This leads to an overall conclusion that the users who spend more time on social
 
 ### Conclusion for the plots in Plot 1:
 
--Platform Comparison: Some platforms show higher average depression scores than others like Instagram and Snapchat. Users of certain platforms report higher feelings of emotions such as depression, anger, happiness, etc. due to different usage patterns or social dynamics.
+- Platform Comparison: Some platforms show higher average depression scores than others like Instagram and Snapchat. Users of these platforms report higher feelings of emotions such as depression, anger, happiness, etc. due to different usage patterns or social dynamics.
 
--Social Media Influence: One of the conclusions we can come to by looking at the graph is that the people with aggression and happiness as dominant emotions have higher daily usage times. The patterns suggest that a particular platform (for example Instagram as it is the highest reported used social media platform) shows about the mental changes these platforms can bring about in users through their platform which may be connected to the type of content on the platoform, the UI, the type of people that use those platforms, etc.
+- Social Media Influence: One of the conclusions we can come to by looking at the graph is that the people with aggression and happiness as dominant emotions have higher daily usage times. The patterns suggest that a particular platform (for example Instagram as it is the highest reported used social media platform) shows about the mental changes these platforms can bring about in users through their platform which may be connected to the type of content on the platoform, the UI, the type of people that use those platforms, etc.
 
 
 ### Conclusion for the plots in Plot 2:
 
--Usage Impact: The graph shows whether higher daily social media usage is associated with higher average depression and anxiety scores.
+- Usage Impact: The graph shows whether higher daily social media usage is associated with higher average depression and anxiety scores.
 
--Pattern Identification:  Looking at the how people who spend more than 5 hours a day on social media, it shows that increased social media use correlates with more frequent feelings of depression and anxiety. 
+- Pattern Identification:  Looking at the how people who spend more than 5 hours a day on social media, it shows that increased social media use correlates with more frequent feelings of depression and anxiety. And the people who spend less than an hour on social media seem to report healthier mental states and significantly lesser depression and anxiety scores compared to every other type of user.
+
 
